@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/tailwindcss-animate@1.0.7/dist/index.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style type="text/tailwindcss">
+      @theme {
+        --color-clifford: #da373d;
+      }
+
+      @layer base {
+        button{
+            @apply border border-green-500 bg-green-300 px-2 rounded-md cursor-pointer hover:bg-green-400 hover:text-white active:ring-2 active:scale-105;
+        }
+      }
+
+      @layer utility {
+        .btn {
+            background-color: skyblue;
+        }
+      }
+    </style>
+  </head>
+<!-- xs sm md lg xl 2xl 3xl -->
+  <body class="h-screen bg-green-100 grid place-items-center">
+    <div class="group flex flex-col md:flex-row [&>button]:shadow-md [&>button]:hover:shadow-xl border p-3 gap-3">
+      <button>Button</button>
+      <button class="btn text-white group-hover:border-black">Button</button>
+      <button class="btn text-black">Button</button>
+      <h1 class="text-3xl font-bold underline text-clifford animate-spinX">
+        Hello world!
+      </h1>
+      <div class="border mx-5 my-10 pt-3 pl-3">div</div>
+    </div>
+    <div class="group container flex gap-2">
+      <img src="https://avatars.githubusercontent.com/u/5843964?v=4" alt="Jade Profile Image"
+      class="rounded-full size-16 group-hover:border">
+      <div class="[&>small]:block [&>small]:text-gray-500">
+          <div>indiflex.corp@gmail.com</div>
+          <small>description..111</small>
+          <small>description..222</small>
+      </div>
+    </div>
+  </body>
+</html>
