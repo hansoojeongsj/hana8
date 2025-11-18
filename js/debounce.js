@@ -159,3 +159,16 @@ const intl1 = setInterval(() => {
 // arr.lastIndexOf(3);
 
 // indexOf랑 findLastIndex랑 같음
+
+for (let i = 1; i <= 5; i++) {
+  setTimeout(() => {
+    console.log(i);
+  }, i * 1000);
+}
+
+let i = 1;
+const count5sec = setInterval(() => {
+  console.log(i);
+  if (i === 5) clearInterval(count5sec);
+  i++;
+}, 1000);
