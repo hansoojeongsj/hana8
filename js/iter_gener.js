@@ -83,4 +83,4 @@ function runAdd() {
 }
 runAdd();
 
-// 종료가 없는 상황 iterator
+// 종료가 없는 상황은 iterator
