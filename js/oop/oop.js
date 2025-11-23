@@ -5,7 +5,7 @@ class Emp {
   }
 
   set fullName(name) {
-    [this.firstName, this.lastName] = name.split(" ");
+    [this.firstName, this.lastName] = name.split(' ');
   }
 
   get fullName() {
@@ -13,36 +13,36 @@ class Emp {
   }
 }
 
-const hong = new Emp("Kildong Hong");
+const hong = new Emp('Kildong Hong');
 console.log(hong.fullName);
-hong.fullName = "Nanda Kim";
+hong.fullName = 'Nanda Kim';
 console.log(hong.fullName);
 
-console.log(Object.getOwnPropertyDescriptor(Emp.prototype, "fullname"));
-console.log("hong = ", hong);
+console.log(Object.getOwnPropertyDescriptor(Emp.prototype, 'fullname'));
+console.log('hong = ', hong);
 
 // --------
-const kim = { id: 1, firstName: "Nanda", lastName: "Kim" };
+const kim = { id: 1, firstName: 'Nanda', lastName: 'Kim' };
 const proxyObj = new Proxy(kim, {
   get(target, prop, receiver) {
-    console.log("receiver >> ", receiver === proxyObj);
-    if (prop === "fullName") {
+    console.log('receiver >> ', receiver === proxyObj);
+    if (prop === 'fullName') {
       return `${target.firstName} ${target.lastName}`;
     }
   },
 
   // target.fullName = x;
   set(target, prop, value, receiver) {
-    if (prop === "fullName") {
-      [target.firstName, target.lastName] = value.split(" ");
+    if (prop === 'fullName') {
+      [target.firstName, target.lastName] = value.split(' ');
     } else {
       target[prop] = value;
     }
   },
 });
 
-console.log("🚀 ~ id:", kim.id);
-console.log("🚀 ~ name:", proxyObj.fullName, kim.fullName);
+console.log('🚀 ~ id:', kim.id);
+console.log('🚀 ~ name:', proxyObj.fullName, kim.fullName);
 
 console.log(proxyObj instanceof Emp);
 
@@ -66,13 +66,13 @@ Emp.prototype.nameLength = function () {
   return this.fullName.length;
 };
 
-console.log("upper >>", hong.upperName);
-console.log("lower >>", hong.lowerName);
-console.log("nameLen >>", hong.nameLength());
+console.log('upper >>', hong.upperName);
+console.log('lower >>', hong.lowerName);
+console.log('nameLen >>', hong.nameLength());
 
 // -------
 
-console.log("-------------");
+console.log('-------------');
 
 class Pet {
   feed(nutrient) {
@@ -81,4 +81,4 @@ class Pet {
 }
 
 Object.assign(Emp.prototype, { feed: Pet.prototype.feed });
-hong.feed("xxx");
+hong.feed('xxx');

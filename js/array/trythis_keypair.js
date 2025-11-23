@@ -1,7 +1,7 @@
 // keyPair, O(N) || O(logN)
 // loop 두 번이면 N^2
-const assert = require("assert");
-const { isDeepStrictEqual } = require("util");
+const assert = require('assert');
+const { isDeepStrictEqual } = require('util');
 
 const keyPair = (arr, sum) => {
   // const myPairIndex = {};
@@ -25,8 +25,8 @@ keyPair([1, 2, 3, 4, 5, 7], 9); // [3, 4]  or [1, 5]
 // ----
 // 키페어는 쉬운 문제라고 하심.
 
-const assert = require("assert");
-const { isDeepStrictEqual } = require("util");
+const assert = require('assert');
+const { isDeepStrictEqual } = require('util');
 
 const keyPair1 = (arr, sum) => {
   const myPairIndex = {};

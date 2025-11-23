@@ -16,7 +16,7 @@ d3.setDate(0);
 
 // moment.js 존재함
 const lastday = d3.getDate();
-console.log("🚀 ~ lastday:", lastday);
+console.log('🚀 ~ lastday:', lastday);
 
 const rand = (s, e) => s + Math.floor((e - s + 1) * Math.random());
 
@@ -28,31 +28,31 @@ do {
 } while (dates.length < 5);
 
 dates.sort((a, b) => (a > b ? 1 : -1)).reverse();
-console.log("🚀 ~ dates:", dates);
+console.log('🚀 ~ dates:', dates);
 
 // 날짜 함수 굉장히 무거움
 const ym = `${d3.getFullYear()}-${d3.getMonth() + 1}`;
 
-dates.forEach((d) => console.log(`${ym}-${d.toString().padStart(2, "0")}`));
+dates.forEach((d) => console.log(`${ym}-${d.toString().padStart(2, '0')}`));
 
 // 내년(2026년) 오늘의 요일을 출력하시오.
 const d4 = new Date();
 d4.setFullYear(d4.getFullYear() + 1);
-const fmtWeek = new Intl.DateTimeFormat("ko-KR", {
-  weekday: "long",
+const fmtWeek = new Intl.DateTimeFormat('ko-KR', {
+  weekday: 'long',
 });
 
-console.log("1년 후, ", fmtWeek.format(d4));
+console.log('1년 후, ', fmtWeek.format(d4));
 
 // 오늘로부터 100일 후의 날짜는?
 const d5 = new Date();
 d5.setDate(d5.getDate() + 100);
 
-const fmtFull = new Intl.DateTimeFormat("ko-KR", {
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
-  weekday: "long",
+const fmtFull = new Intl.DateTimeFormat('ko-KR', {
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+  weekday: 'long',
 });
 
-console.log("100일 후, ", fmtFull.format(d5));
+console.log('100일 후, ', fmtFull.format(d5));

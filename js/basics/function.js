@@ -6,15 +6,15 @@ const gate1counter = (function counter() {
   };
 })(); // IIFE
 
-console.log("🚀 ~ gate1counter:", gate1counter());
-console.log("🚀 ~ gate1counter:", gate1counter());
-console.log("🚀 ~ gate1counter:", gate1counter());
+console.log('🚀 ~ gate1counter:', gate1counter());
+console.log('🚀 ~ gate1counter:', gate1counter());
+console.log('🚀 ~ gate1counter:', gate1counter());
 
 async function af() {
-  const data = await fetch("https://jsonplaceholder.typicode.com/todos/1").then(
+  const data = await fetch('https://jsonplaceholder.typicode.com/todos/1').then(
     (res) => res.json()
   );
   return data;
 }
 const data = await af();
-console.log("🚀 ~ data:", data);
+console.log('🚀 ~ data:', data);

@@ -1,10 +1,10 @@
-const assert = require("assert");
+const assert = require('assert');
 
-const hong = { id: 1, name: "Hong" };
-const choi = { id: 5, name: "Choi" };
-const kim = { id: 2, name: "kim" };
-const lee = { id: 3, name: "Lee" };
-const park = { id: 4, name: "Park" };
+const hong = { id: 1, name: 'Hong' };
+const choi = { id: 5, name: 'Choi' };
+const kim = { id: 2, name: 'kim' };
+const lee = { id: 3, name: 'Lee' };
+const park = { id: 4, name: 'Park' };
 const users = [kim, lee, park];
 
 const reduce = (arr, fn, initValue) => {

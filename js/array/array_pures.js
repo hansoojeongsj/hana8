@@ -1,4 +1,4 @@
-const assert = require("assert");
+const assert = require('assert');
 const arr = [1, 2, 3, 4];
 const push = (array, ...args) => [...array, ...args];
 const pop = (array, cnt = 1) => {

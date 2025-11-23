@@ -1,5 +1,5 @@
 // range fn
-const assert = require("assert");
+const assert = require('assert');
 
 const range = (s, e, step = s > e ? -1 : 1) => {
   if (s === e || step === 0) return [s];
@@ -78,10 +78,10 @@ assert.deepStrictEqual(
 
 // 강사님 코드 리팩
 
-const assert = require("assert");
+const assert = require('assert');
 
 const rangefn = (s, e, step = s > e ? -1 : 1) => {
-  console.log("rangefn >>", s, e, step);
+  console.log('rangefn >>', s, e, step);
   if (s === e || step === 0) return [s];
   // if (s > e && step > 0) return [];
   // if (s < e && step < 0) return [];

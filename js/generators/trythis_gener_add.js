@@ -51,13 +51,13 @@
 // console.log(itAdd2.next(2).value);
 
 // 강사님 풀이
-const readline = require("readline");
-const { stdin: input, stdout: output } = require("process");
+const readline = require('readline');
+const { stdin: input, stdout: output } = require('process');
 const rl = readline.createInterface({ input, output });
 
 function* add() {
-  const x = yield "첫 번째 수는?";
-  const y = yield "두 번째 수는?";
+  const x = yield '첫 번째 수는?';
+  const y = yield '두 번째 수는?';
 
   return x + y;
 }
@@ -71,7 +71,7 @@ function run({ value, done }) {
   }
   rl.question(`${value} -> `, (answer) => {
     if (isNaN(answer)) {
-      console.log("Input the number only!");
+      console.log('Input the number only!');
       run({ value, done });
     } else {
       run(adder.next(+answer));
@@ -81,6 +81,6 @@ function run({ value, done }) {
 
 run(adder.next());
 
-rl.on("close", function () {
+rl.on('close', function () {
   process.exit();
 });

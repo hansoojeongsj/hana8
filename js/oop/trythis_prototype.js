@@ -1,8 +1,8 @@
-const assert = require("assert");
+const assert = require('assert');
 const arr = [1, 2, 3, 4, 5];
-const hong = { id: 1, name: "Hing" };
-const kim = { id: 2, name: "Kim" };
-const lee = { id: 3, name: "Lee" };
+const hong = { id: 1, name: 'Hing' };
+const kim = { id: 2, name: 'Kim' };
+const lee = { id: 3, name: 'Lee' };
 const users = [hong, lee, kim];
 
 Object.defineProperties(Array.prototype, {
@@ -63,21 +63,21 @@ Array.prototype.rejectBy = function (prop, value, isIncludes = false) {
 };
 
 Array.prototype.sortBy = function (prop_asc) {
-  const [prop, order = "asc"] = prop_asc.split(":");
-  const dir = order === "asc" ? 1 : -1;
+  const [prop, order = 'asc'] = prop_asc.split(':');
+  const dir = order === 'asc' ? 1 : -1;
   return this.sort((a, b) => (a[prop] > b[prop] ? dir : -dir));
 };
 
 assert.deepStrictEqual([arr.firstObject, arr.lastObject], [1, 5]);
-assert.deepStrictEqual(users.mapBy("id"), [1, 3, 2]); // users.map(u => u['id'])
-assert.deepStrictEqual(users.mapBy("name"), ["Hing", "Lee", "Kim"]);
-assert.deepStrictEqual(users.filterBy("id", 2), [kim]);
-assert.deepStrictEqual(users.filterBy("name", "i", true), [hong, kim]); // key, value일부, isInclude
-assert.deepStrictEqual(users.rejectBy("id", 2), [hong, lee]);
-assert.deepStrictEqual(users.rejectBy("name", "i", true), [lee]);
-assert.deepStrictEqual(users.findBy("name", "Kim"), kim);
-assert.deepStrictEqual(users.sortBy("name:desc"), [lee, kim, hong]);
-assert.deepStrictEqual(users.sortBy("name"), [hong, kim, lee]);
+assert.deepStrictEqual(users.mapBy('id'), [1, 3, 2]); // users.map(u => u['id'])
+assert.deepStrictEqual(users.mapBy('name'), ['Hing', 'Lee', 'Kim']);
+assert.deepStrictEqual(users.filterBy('id', 2), [kim]);
+assert.deepStrictEqual(users.filterBy('name', 'i', true), [hong, kim]); // key, value일부, isInclude
+assert.deepStrictEqual(users.rejectBy('id', 2), [hong, lee]);
+assert.deepStrictEqual(users.rejectBy('name', 'i', true), [lee]);
+assert.deepStrictEqual(users.findBy('name', 'Kim'), kim);
+assert.deepStrictEqual(users.sortBy('name:desc'), [lee, kim, hong]);
+assert.deepStrictEqual(users.sortBy('name'), [hong, kim, lee]);
 assert.deepStrictEqual(users.firstObject, hong);
 assert.deepStrictEqual(users.lastObject, lee);
 users.firstObject = kim;
@@ -100,16 +100,16 @@ class Dog {
 
   fn() {
     // 프로토타입 메서드 (인스턴스에 없음)
-    return "FN";
+    return 'FN';
   }
 
   static sfn() {
     // 클래스 자체에 붙는 static 메서드 → Dog.sfn 가능
-    return "SFN";
+    return 'SFN';
   }
 }
 
-const lucy = new Dog("Lucy");
+const lucy = new Dog('Lucy');
 const { sfn } = Dog;
 const { fn } = Dog.prototype;
 
