@@ -33,3 +33,6 @@ const [n1, s1] = f();
 const t: [number, string] = [100, 'B'];
 
 const [n2, s2] = t;
+
+// Freshness
+// covariance and contravariance
