@@ -155,3 +155,16 @@ console.log(deleteArray(users, 2)); // [Hong, Kim]
 console.log(deleteArray(users, 1, 2)); // [Hong, Lee]
 console.log(deleteArray(users, 'id', 2)); // [Hong, Lee]
 console.log(deleteArray(users, 'name', 'Lee')); // [Hong, Kim]
+
+// assert, @types/node
+import assert from 'assert';
+
+const Hong = { id: 1, name: 'Hong' };
+const Kim = { id: 2, name: 'Kim' };
+const Lee = { id: 3, name: 'Lee' };
+const Ausers = [Hong, Kim, Lee];
+
+assert.deepStrictEqual(deleteArray(arr, 2), [1, 2]);
+assert.deepStrictEqual(deleteArray(arr, 1, 3), [1, 4]);
+assert.deepStrictEqual(deleteArray(Ausers, 2), [Hong, Kim]);
+assert.deepStrictEqual(deleteArray(Ausers, 'id', 2), [Hong, Lee]);
