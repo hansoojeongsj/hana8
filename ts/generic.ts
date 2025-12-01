@@ -88,6 +88,40 @@ type XX7 = ExcludedFunction<XX6>;
 
 type XX77 = Exclude<XX6, Function>;
 
-// infer 사용 방법
+// infer 사용한 방법
 type MapObject2<M> = M extends Map<unknown, infer Val> ? Val : unknown;
 type XX8 = MapObject2<typeof map>;
+
+//
+type User = { id: number; name: string };
+const getData = (url: string) => fetch(url);
+
+async function f() {
+  const res = await getData('http://example.com');
+  const data = (await res.json()) as User;
+
+  return 1;
+}
+
+const abc = f();
+
+const pf = () =>
+  new Promise((resolve) => {
+    resolve(1);
+  });
+const y = pf();
+
+const pf2 = () =>
+  new Promise<number>((resolve) => {
+    resolve(1);
+  });
+
+const y2 = pf2();
+
+//
+const pf3 = (): Promise<number> =>
+  new Promise((resolve) => {
+    resolve(1);
+  });
+
+const y3 = pf3();
