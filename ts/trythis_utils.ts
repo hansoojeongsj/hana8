@@ -153,6 +153,7 @@ for (let i = 10; i < 15; i++) thro(i); // 11
 //     return cache[k] ?? (cache[k] = fn(...args));
 //   };
 // }
+
 function memoized<T extends (...args: Parameters<T>) => ReturnType<T>>(fn: T) {
   const cache: Record<string, ReturnType<T>> = {};
   return function (...args: Parameters<T>) {
@@ -176,5 +177,5 @@ const memoizeFactorial = memoized((n: number): number => {
   return n * memoizeFactorial(n - 1);
 });
 
-console.log(memoizeFactorial(3), 6);
-console.log(memoizeFactorial(5), 120);
+console.log(memoizeFactorial(3), 6); // 6 6
+console.log(memoizeFactorial(5), 120); // 120 120
