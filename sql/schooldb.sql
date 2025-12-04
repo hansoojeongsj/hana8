@@ -53,3 +53,35 @@ select * from schooldb.Major;
 update Student set major = 1 where id = 1; -- 'Hong'
 
 show index from Student;
+
+--
+desc Student;
+
+create table Prof(
+	id smallint unsigned not null auto_increment primary key,
+    name varchar(31) not null,
+    likecnt mediumint not null default 0
+);
+
+create table Subject(
+    id smallint unsigned not null auto_increment primary key,
+    name varchar(15) not null,
+    prof smallint unsigned null,
+    foreign key fk_Subject_Prof (prof) references Prof (id)
+		on update cascade on delete set null
+);
+
+create table Enroll(
+    id int unsigned not null auto_increment primary key,
+    subject smallint unsigned not null,
+    student int unsigned not null,
+
+    foreign key fk_Enroll_Subject (subject) references Subject (id)
+		on update cascade on delete cascade,
+    foreign key fk_Enroll_Student (student) references Student (id)
+		on update cascade on delete cascade,
+        
+	-- 한 학생이 같은 강의 두 개 insert 되면 안됨
+    unique key uniq_Enroll_Subject_Student (subject, student)
+);
+
