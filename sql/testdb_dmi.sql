@@ -58,6 +58,9 @@ select e.*
 select * from Dept;
 -- Dept 테이블에 부서 별로, 직원 이름이 가장 빠른 직원(가나다 순)을 
 -- 각 부서의 captain으로 update 하시오
+
+-- My answer
+/*
 select * from Emp;
 
 select e.dept, MIN(e.ename) AS captain_name, MIN(e.id) AS captain_id
@@ -67,12 +70,14 @@ select e.dept, MIN(e.ename) AS captain_name, MIN(e.id) AS captain_id
 
 alter table Dept add column captain int unsigned null;
 
+select * from Dept;
+
 select d.id as dept_id,
        d.dname,
        e.id as captain_id,
        e.ename as captain_name
-  from dept d
-  join emp e
+  from Dept d
+  join Emp e
     on e.id = (
         select id
           from emp
@@ -81,26 +86,53 @@ select d.id as dept_id,
          limit 1
     )
  order by d.id;
- 
+*/
+
+-- teacher answer
+-- 가장 앞 사람 찾는 방법
+select dept, min(ename) from Emp group by dept;
+-- 가장 앞 사람과 전체 정렬(가나다)
+select dept, min(ename), group_concat(ename order by ename) from Emp group by dept;
+
+-- ename search (?) + captain <- id update
+-- select d.id, d.dname, (select min(ename) from Emp where dept = d.id) from Dept d
+update dept d
+   set d.captain =
+       (select id
+          from emp
+         where dept = d.id
+         order by ename
+         limit 1)
+ where d.id > 0; 
+    
+select d.*, e.ename
+	from Dept d inner join Emp e on d.captain = e.id;
+
+select * from dept;
+
+--
 -- ex) Emp table에 outdt(퇴사일) 컬럼 추가
+
+-- my answer
 select * from Emp;
 
-alter table Emp add column outdt date null;
+alter table Emp add column outdt date null comment '퇴사일' after salary;
 
+-- 단순 확인용 
 select id, ename, dept, salary, auth,
 if(outdt is null, '재직중', '퇴사') as outdt
   from Emp
  order by dept, id;
 
 -- Emp.id가 3, 5 인 직원을 2025년 11월 25일자 퇴사 처리하시오.
-/*
-update Emp
-   set outdt = '2025-11-25'
- where id in (3,5);
-*/
+select * from Emp
+-- update Emp set outdt = '2025-11-25'
+	where id in (3,5);
+-- 퇴사 처리 완료     
 
 -- Emp.id가 14, 26 인 직원을 오늘자 퇴사 처리하면서,
 -- 만약 Dept.captain이 퇴사자면 공석으로 처리! (SQL문 1개로)
+
 /*
 update emp e
   left join dept d
@@ -109,3 +141,33 @@ update emp e
        d.captain = null
  where e.id in (14,26);
 */
+
+-- teacher answer
+select * from Dept where captain in (14, 26);
+
+select d.*
+	from Dept d inner join Emp e on d.captain = e.id
+    where e.id in (14, 26);
+
+select current_date();
+select curdate();
+
+-- 방식 1 inner join
+-- select e.*, d.*, (e.id = d.captain) from Emp e inner join Dept d on e.dept = d.id
+update Emp e inner join Dept d on e.dept = d.id
+	  set e.outdt = current_date(), d.captain = (case when d.captain in (14, 26) then null else d.captain end)
+      where e.id in (14, 26);
+    
+-- 
+select *
+	from Emp e left outer join Dept d on e.id = d.captain
+    where e.id in (14, 26);
+
+-- 방식 2 outer join
+update Emp e left outer join Dept d on e.id = d.captain
+	set e.outdt = curdate(), d.captain = null
+    where e.id in (14, 26);
+
+select * from Dept;
+select * from Emp;
+
