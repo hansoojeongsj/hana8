@@ -98,3 +98,34 @@ update Subject set name='과목5to2', prof=2 where id=5;
 
 -- view에 만들면, 서브쿼리로 하게 되어서 성능이 떨어짐
 -- 성능면에서 좋지만, 관리와 보수에 어려움
+
+-- order by는 한 곳에만, column은 똑같아야 
+select * from Subject where id < 5
+UNION
+select * from Subject where id > 3;
+
+-- @: sessin scope 변수, declare를 안해서 접속한 connection에서는 유지됨
+
+-- stored function: 한 개를 무조건 return 하는 게 function임 
+-- function 만들고 확인하던 코드
+select now(), f_dt(now());
+
+-- docker-compose.yml 수정 후
+-- log_bin_trust_function_creators의 value 확인 on/off
+show variables like '%trust%';
+
+-- testdb에 만든 procedures
+-- procedures는 절차적으로 여러 개 return 가능 
+use testdb;
+select * from Dept;
+call sp_emps_by_deptid(2);
+
+-- captain이 없어서, 직원목록이 안 나옴
+-- procedures에 inner join 말고 left outer join 수정하면 잘 나옴 
+call sp_emps_by_deptid(1);
+
+-- 오류 procedures에 	IF _dept <= 0 THEN 추가
+call sp_emps_by_deptid(-1);
+
+-- grant all privileges on schooldb.sp_emps_by_deptid to kildong@'%';
+call sp_depts_by_cursor();
