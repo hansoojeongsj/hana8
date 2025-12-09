@@ -129,3 +129,19 @@ call sp_emps_by_deptid(-1);
 
 -- grant all privileges on schooldb.sp_emps_by_deptid to kildong@'%';
 call sp_depts_by_cursor();
+
+--
+-- f_empinfo(empId) ⇒ 홍길동(인사팀)
+-- 직원 id를 전달하면, 다음과 같이 직원명과 부서를 반환하는 함수를 작성하시오.
+-- 출력예: 홍길동(인사팀)
+-- 1) Query 작성
+-- 2) 입력 파라미터 설정, 리턴 타입 정의
+-- 3) BEGIN ~ END 사이에 Query 입력
+-- select id, f_empinfo(id) empinfo from Emp limit 10;
+desc Emp;
+
+select concat(e.ename, '(', d.dname, ')')
+	from Emp e inner join Dept d on e.dept = d.id
+    where e.id =23;
+    
+select f_empinfo(5);
