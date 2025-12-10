@@ -4,3 +4,8 @@ node_modules
 tmp
 mysql
 coverage
+backup
+t.sql
+t3.sql
+t.log
+testdb_schema.sql
