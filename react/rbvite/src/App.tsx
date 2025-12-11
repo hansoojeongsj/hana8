@@ -1,25 +1,51 @@
 import { useState } from 'react';
 import './App.css';
 import Hello from './components/Hello';
+import My from './components/My';
+
+type Item = {
+  id: number;
+  name: string;
+  price: number;
+};
+
+export type LoginUser = { id: number; name: string; age: number };
+
+export type Session = {
+  loginUser: LoginUser | null;
+  cart: Item[];
+};
+
+const DefaultSession = {
+  // loginUser: null,
+  loginUser: { id: 1, name: 'Hong', age: 33 },
+  cart: [
+    { id: 100, name: '라면', price: 3000 },
+    { id: 101, name: '컵라면', price: 2000 },
+    { id: 200, name: '파', price: 5000 },
+  ],
+};
 
 function App() {
   const [count, setCount] = useState(0);
+  const [session, setSession] = useState<Session>(DefaultSession);
 
-  const x = count;
-  console.log('🚀~ x:', x);
+  const logout = () => {
+    // session.loginUser = null; // fail
+    setSession({ ...session, loginUser: null });
+  };
 
   return (
     <div className='grid place-items-center h-screen'>
-      <h1 className='text-3xl'>React {1 + 2}</h1>
-      <div className='card'>
-        <button
-          className='border py-1 px-2 rounded-md cursor-pointer'
-          onClick={() => setCount((count) => count + 1)}
-        >
-          count is {count}
-        </button>
-        <Hello name='jade'>hihi</Hello>
-      </div>
+      <h1 className='text-3xl'>count: {count} </h1>
+      <My session={session} logout={logout} />
+      <Hello
+        name={session.loginUser?.name}
+        age={session.loginUser?.age}
+        setCount={setCount}
+      >
+        반갑습니다.
+      </Hello>
     </div>
   );
 }
