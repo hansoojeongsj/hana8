@@ -60,6 +60,15 @@ function App() {
     });
   };
 
+  const addItem = (name: string, price: number) => {
+    const newItem = {
+      id: Math.max(...session.cart.map((item) => item.id), 0) + 1,
+      name,
+      price,
+    };
+    setSession({ ...session, cart: [...session.cart, newItem] });
+  };
+
   return (
     <div className='grid place-items-center h-screen'>
       <h1 className='text-3xl'>count: {count} </h1>
@@ -68,6 +77,7 @@ function App() {
         logout={logout}
         login={login}
         removeItem={removeItem}
+        addItem={addItem}
       />
       <Hello
         name={session.loginUser?.name}
