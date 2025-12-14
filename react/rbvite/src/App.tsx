@@ -45,10 +45,30 @@ function App() {
     setSession({ ...session, loginUser: { id: 1, name, age } });
   };
 
+  const removeItem = (id: number) => {
+    if (!confirm('Are u sure?')) return;
+
+    // filter 자체가 새 배열을 반환하므로 스프레드 연산자는 불필요
+    // setSession({
+    //   ...session,
+    //   cart: [...session.cart.filter((item) => item.id !== id)],
+    // });
+
+    setSession({
+      ...session,
+      cart: session.cart.filter((item) => item.id !== id),
+    });
+  };
+
   return (
     <div className='grid place-items-center h-screen'>
       <h1 className='text-3xl'>count: {count} </h1>
-      <My session={session} logout={logout} login={login} />
+      <My
+        session={session}
+        logout={logout}
+        login={login}
+        removeItem={removeItem}
+      />
       <Hello
         name={session.loginUser?.name}
         age={session.loginUser?.age}

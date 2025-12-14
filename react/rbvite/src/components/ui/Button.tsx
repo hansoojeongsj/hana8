@@ -8,7 +8,7 @@ type Prop = PropsWithChildren<{
 export default function Button({ onClick, className, children }: Prop) {
   return (
     <button
-      className={`border py-1 px-2 rounded-md cursor-pointer ${className}`}
+      className={`${className}`}
       onClick={onClick}
     >
       {children}
