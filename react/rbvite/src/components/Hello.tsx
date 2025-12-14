@@ -4,10 +4,11 @@ import Button from './ui/Button';
 type Prop = PropsWithChildren<{
   name?: string;
   age?: number;
-  setCount: (cb: (c: number) => number) => void;
+  // setCount: (cb: (c: number) => number) => void;
+  plusCount: () => void;
 }>;
 
-export default function Hello({ name, children, age, setCount }: Prop) {
+export default function Hello({ name, children, age, plusCount }: Prop) {
   return (
     <div className='p-4 text-center border-2 border-pink-400 rounded-2xl'>
       <h2 className='text-2xl'>
@@ -15,10 +16,7 @@ export default function Hello({ name, children, age, setCount }: Prop) {
         {age && <small className='text-sm'>({age})</small>}
       </h2>
       <div>{children}</div>
-      <Button
-        onClick={() => setCount((count) => count + 1)}
-        className='font-bold'
-      >
+      <Button onClick={() => plusCount()} className='font-bold'>
         count + 1
       </Button>
     </div>
