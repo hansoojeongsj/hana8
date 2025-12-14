@@ -1,6 +1,14 @@
+import { useState } from 'react';
+import type { LoginFunction } from '../App';
 import Button from './ui/Button';
 
-export default function Login() {
+type Props = {
+  login: LoginFunction;
+};
+export default function Login({ login }: Props) {
+  const [name, setName] = useState('');
+  const [age, setAge] = useState(0);
+
   return (
     <div className='border border-red-300 p-3 rounded-lg'>
       <h1 className='text-2xl text-center font-medium'>Login</h1>
@@ -12,9 +20,11 @@ export default function Login() {
           <input
             type='text'
             id='name'
+            onChange={(e) => setName(e.target.value)}
             placeholder='user name...'
             className='w-full'
-          ></input>
+            required
+          />
         </div>
         <div>
           <label htmlFor='name' className='text-sm text-gray-600'>
@@ -23,12 +33,17 @@ export default function Login() {
           <input
             type='number'
             id='age'
+            onChange={(e) => setAge(+e.target.value)}
             placeholder='user name...'
             className='w-full'
-          ></input>
+            required
+          />
         </div>
         <div className='text-center'>
-          <Button className='bg-blue-500 text-white hover:bg-blue-600'>
+          <Button
+            onClick={() => login(name, age)}
+            className='bg-blue-500 text-white hover:bg-blue-600'
+          >
             Login
           </Button>
         </div>
