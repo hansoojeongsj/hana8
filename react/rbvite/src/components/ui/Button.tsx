@@ -1,14 +1,26 @@
 import type { PropsWithChildren } from 'react';
 
-type Prop = PropsWithChildren<{
+type Prop = {
   onClick?: () => void;
   type?: 'reset' | 'submit';
-  className?: string;
-}>;
+  disabled?: boolean;
+  className: string;
+};
 
-export default function Button({ onClick, type, className, children }: Prop) {
+export default function Button({
+  onClick,
+  type,
+  className,
+  disabled,
+  children,
+}: PropsWithChildren<Prop>) {
   return (
-    <button type={type} className={`${className}`} onClick={onClick}>
+    <button
+      type={type}
+      className={`${className}`}
+      disabled={disabled}
+      onClick={onClick}
+    >
       {children}
     </button>
   );
