@@ -104,7 +104,7 @@ export default function Item({
             onChange={checkDirty}
             placeholder='price...'
           />
-          <Button onClick={cancelEdit} type='reset' className=''>
+          <Button onClick={cancelEdit} type='reset'>
             <RotateCcwIcon />
           </Button>
           {hasDirty && (

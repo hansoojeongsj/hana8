@@ -1,21 +1,44 @@
+import { useImperativeHandle, type RefObject } from 'react';
 import type { LoginUser } from '../App';
 import Button from './ui/Button';
 
 type Prop = {
   loginUser: LoginUser;
   logout: () => void;
+  ref: RefObject<ProfileHandler | null>;
 };
 
-export default function Profile({ loginUser, logout }: Prop) {
+export type ProfileHandler = {
+  xxx: string;
+  showLoginUser: () => void;
+  logout: () => void;
+};
+
+export default function Profile({ loginUser, logout, ref }: Prop) {
+  const showLoginUser = () => {
+    alert(loginUser.name);
+  };
+
+  const xxx = 'sdfdsfdfsfs';
+
+  useImperativeHandle(ref, () => ({
+    xxx,
+    showLoginUser,
+    logout,
+  }));
+
   return (
     <>
       <h1 className='text-2xl'>LoginUser: {loginUser.name}</h1>
-      <Button
-        onClick={logout}
-        className='bg-red-500 hover:bg-red-400 text-white'
-      >
-        Logout
-      </Button>
+      <div className='flex gap-5'>
+        <Button
+          onClick={logout}
+          className='bg-red-500 hover:bg-red-400 text-white'
+        >
+          LogOut
+        </Button>
+        <Button onClick={showLoginUser}>Show LoginUser</Button>
+      </div>
     </>
   );
 }
