@@ -41,7 +41,7 @@ export function CounterProvider({ children }: PropsWithChildren) {
   // const plusCount = () => setCount((prevCount) => prevCount + 1);
   // const minusCount = () => setCount((prevCount) => prevCount - 1);
   const plusCount = () => dispatch({ type: 'plus', payload: 1 });
-  const minusCount = () => dispatch({ type: 'minus', payload: -1 });
+  const minusCount = () => dispatch({ type: 'minus', payload: 1 });
   const multiCount = (payload: number) => dispatch({ type: 'multi', payload });
 
   return (

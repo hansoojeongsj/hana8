@@ -1,8 +1,8 @@
 import {
   createContext,
   use,
-  useReducer,
   useRef,
+  useState,
   type PropsWithChildren,
   type RefObject,
 } from 'react';
@@ -49,52 +49,21 @@ const SessionContext = createContext<SessionContextValue>({
   saveItem: () => {},
 });
 
-type Action =
-  | { type: 'LOGIN'; payload: LoginUser }
-  | { type: 'LOGOUT'; payload: null }
-  // | { type: 'ADD-ITEM'; payload: Omit<ItemType, 'id'> }
-  | { type: 'ADD-ITEM'; payload: ItemType }
-  | { type: 'EDIT-ITEM'; payload: ItemType }
-  | { type: 'REMOVE-ITEM'; payload: number };
-
-const reducer = (session: Session, { type, payload }: Action) => {
-  switch (type) {
-    case 'LOGIN':
-    case 'LOGOUT':
-      return { ...session, loginUser: payload };
-    case 'ADD-ITEM':
-      return { ...session, cart: [...session.cart, payload] };
-    case 'EDIT-ITEM':
-      return {
-        ...session,
-        cart: session.cart.map((item) =>
-          item.id == payload.id ? payload : item
-        ),
-      };
-    case 'REMOVE-ITEM':
-      return {
-        ...session,
-        cart: session.cart.filter((item) => item.id == payload),
-      };
-    default:
-      return session;
-  }
-};
-
 // 2. Provider
+// 상태나 함수를 제공하는 
 export function SessionProvider({ children }: PropsWithChildren) {
-  const [session, dispatch] = useReducer(reducer, DefaultSession);
+  const [session, setSession] = useState<Session>(DefaultSession);
 
   const loginHandlerRef = useRef<LoginHandler>(null);
 
   const logout = () => {
     // session.loginUser = null; // fail!!
-    dispatch({ type: 'LOGOUT', payload: null });
+    setSession({ ...session, loginUser: null });
   };
 
   const login: LoginFunction = (name, age) => {
     if (loginHandlerRef.current?.validate())
-      dispatch({ type: 'LOGIN', payload: { id: 1, name, age } });
+      setSession({ ...session, loginUser: { id: 1, name, age } });
   };
 
   const removeItem = (id: number) => {
@@ -106,9 +75,9 @@ export function SessionProvider({ children }: PropsWithChildren) {
     //   cart: [...session.cart.filter((item) => item.id !== id)],
     // });
 
-    dispatch({
-      type: 'REMOVE-ITEM',
-      payload: id,
+    setSession({
+      ...session,
+      cart: session.cart.filter((item) => item.id !== id),
     });
   };
 
@@ -121,9 +90,11 @@ export function SessionProvider({ children }: PropsWithChildren) {
     if (item) {
       // item.name = name;
       // item.price = price;
-      dispatch({
-        type: 'EDIT-ITEM',
-        payload: { id, name, price },
+      setSession({
+        ...session,
+        cart: session.cart.map((item) =>
+          item.id === id ? { id, name, price } : item
+        ),
       });
     } else {
       const newItem = {
@@ -134,7 +105,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
 
       // session은 state라 바꿀 수 없음
       // session.cart = [...session.cart];
-      dispatch({ type: 'ADD-ITEM', payload: newItem });
+      setSession({ ...session, cart: [...session.cart, newItem] });
     }
   };
 
@@ -148,4 +119,5 @@ export function SessionProvider({ children }: PropsWithChildren) {
 }
 
 // 3. useCounter
+// 훅(-> 상태를 가지면 기본적으로 훅)
 export const useSession = () => use(SessionContext);
