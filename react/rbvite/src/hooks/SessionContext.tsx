@@ -74,7 +74,7 @@ const reducer = (session: Session, { type, payload }: Action) => {
     case 'REMOVE-ITEM':
       return {
         ...session,
-        cart: session.cart.filter((item) => item.id == payload),
+        cart: session.cart.filter((item) => item.id !== payload),
       };
     default:
       return session;
