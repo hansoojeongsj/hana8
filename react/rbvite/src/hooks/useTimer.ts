@@ -23,7 +23,7 @@ export function useInterval_OLD<T extends (...args: Parameters<T>) => void>(
   }, []);
 }
 
-function useTime<T extends () => void>(
+function useTime<T extends (...args: Parameters<T>) => void>(
   f: typeof setTimeout | typeof setInterval,
   cb: T,
   delay: number,
@@ -33,14 +33,20 @@ function useTime<T extends () => void>(
   const timerRef = useRef<ReturnType<typeof f>>(undefined);
 
   const setTime = () => {
-    timerRef.current = f(cb, delay, ...args);
+    timerRef.current = f(() => {
+      cb(...args);
+      timerRef.current = undefined;
+    }, delay);
   };
   // const clear = () =>
   //   f === setTimeout
   //     ? clearTimeout(timerRef.current)
   //     : clearInterval(timerRef.current);
-  const clear = () =>
+  const clear = () => {
+    if (timerRef.current) return;
     (f === setTimeout ? clearTimeout : clearInterval)(timerRef.current);
+    timerRef.current = undefined;
+  };
 
   const reset = () => {
     clear();
@@ -53,7 +59,7 @@ function useTime<T extends () => void>(
     return clear;
   }, []);
 
-  return { clear, reset };
+  return { clear, reset, timerRef };
 }
 // function time_OLD<T extends () => void>(
 //   f: typeof setTimeout | typeof setInterval,
@@ -98,7 +104,7 @@ export function useInterval<T extends (...args: Parameters<T>) => void>(
   return useTime(setInterval, cb, delay, ...args);
 }
 
-export function useTimeout<T extends () => void>(
+export function useTimeout<T extends (...args: Parameters<T>) => void>(
   cb: T,
   delay: number,
   ...args: Parameters<T>

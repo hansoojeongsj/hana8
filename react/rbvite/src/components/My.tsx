@@ -1,9 +1,9 @@
 import { PlusIcon } from 'lucide-react';
 import { useEffect, useMemo, useReducer, useRef, useState } from 'react';
-import { useInterval } from '../hooks/useTimer';
 import { type ItemType, useSession } from '../hooks/SessionContext';
 import { useDebounce } from '../hooks/useDebounce';
 import { useFetch } from '../hooks/useFetch';
+import { useInterval } from '../hooks/useTimer';
 import Item from './Item';
 import Login from './Login';
 import Profile, { type ProfileHandler } from './Profile';
@@ -94,6 +94,8 @@ export default function My() {
 */
 
   const debouncedSearch = useDebounce(search, 700);
+  // const throttledSearch = useThrottle(search, 500);
+
   const filteredItems = useMemo(() => {
     if (!debouncedSearch.trim()) return items;
 

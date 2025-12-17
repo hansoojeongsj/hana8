@@ -1,18 +1,18 @@
-import { useEffect, useRef, useState } from 'react';
-import { useInterval, useTimeout } from './useTimer';
+import { useEffect, useState } from 'react';
+import { useTimeout } from './useTimer';
 
 // timer 훅 활용해서 만들기
-export function useDebounce<T>(value: T, delay: number, deps: unknown[] = []) {
-  const [debounce, setDebounce] = useState(value);
+export function useDebounce<T>(state: T, delay: number, deps: unknown[] = []) {
+  const [debounce, setDebounce] = useState(state);
 
   const { reset, clear } = useTimeout(() => {
-    setDebounce(value);
+    setDebounce(state);
   }, delay);
 
   useEffect(() => {
     reset();
     return clear;
-  }, [value, ...deps]);
+  }, [state, ...deps]);
 
   return debounce;
 }
@@ -34,21 +34,42 @@ export function useDebounceWithoutTimerHook<T>(state: T, delay: number) {
 }
 */
 
-export function useThrottle<T>(value: T, delay: number) {
-  const [throttledValue, setThrottledValue] = useState(value);
-  const latestRef = useRef(value);
-
-  // latestRef.current = value;
+export function useThrottle<T>(state: T, delay: number, deps: unknown[] = []) {
+  const [throttledValue, setThrottledValue] = useState<T>(state);
+  const { timerRef, reset } = useTimeout(setThrottledValue, delay, state);
   useEffect(() => {
-    latestRef.current = value;
-  }, [value]);
-
-  useInterval(() => {
-    setThrottledValue(latestRef.current);
-  }, delay);
+    if (timerRef.current) return;
+    reset();
+  }, [state, ...deps]);
 
   return throttledValue;
 }
+
+/*
+// timer 훅 없이 만들기 
+export function useThrottleWithoutTimerHook<T>(
+  state: T,
+  delay: number,
+  deps: unknown[] = []
+) {
+  const [throttledValue, setThrottledValue] = useState<T>(state);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+
+  // latestRef.current = value;
+  useEffect(() => {
+    if (timerRef.current) return;
+
+    timerRef.current = setTimeout(() => {
+      setThrottledValue(state);
+      timerRef.current = undefined;
+    }, delay);
+
+    return () => clearTimeout(timerRef.current);
+  }, [state, ...deps]);
+
+  return throttledValue;
+}
+*/
 
 /**
  * ts 할 때 구현했던 코드
