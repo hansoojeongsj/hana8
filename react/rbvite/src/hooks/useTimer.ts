@@ -1,8 +1,6 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-// useInterval(() => setgoodSec(p => p + 1), 1000))
-// My 속의 useEffect 부분에 기능들을 일로 옮겨왔다!
+// useInterval(() => setGoodSec((p) => p + 1, 1000);
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 // useInterval(console.log, 1000, x, y, z);
 export function useInterval_OLD<T extends (...args: Parameters<T>) => void>(
@@ -25,42 +23,79 @@ export function useInterval_OLD<T extends (...args: Parameters<T>) => void>(
   }, []);
 }
 
-// useReducer처럼 -> 두번쨰 인자에 이전 값을 담아놓는다
-// 함수의 타입을 가져오는 법 -> typeof!
-function time<T extends () => void>(
+function useTime<T extends () => void>(
   f: typeof setTimeout | typeof setInterval,
   cb: T,
   delay: number,
   ...args: Parameters<T>
 ) {
-  // const [timer, setTimer] = useState<ReturnType<typeof f>>(); setTIme : 16ms마다 쓰로틀링이 일어난다.
+  // const [timer, setTimer] = useState<ReturnType<typeof f>>();
   const timerRef = useRef<ReturnType<typeof f>>(undefined);
 
   const setTime = () => {
     timerRef.current = f(cb, delay, ...args);
   };
-  // const clear = () => f === setTimeout? clearTimeout(timerRef.current)
-  //  : clearInterval(timerRef.current);
+  // const clear = () =>
+  //   f === setTimeout
+  //     ? clearTimeout(timerRef.current)
+  //     : clearInterval(timerRef.current);
   const clear = () =>
     (f === setTimeout ? clearTimeout : clearInterval)(timerRef.current);
+
   const reset = () => {
     clear();
     setTime();
   };
+
   useEffect(() => {
     setTime();
 
     return clear;
   }, []);
+
   return { clear, reset };
 }
+// function time_OLD<T extends () => void>(
+//   f: typeof setTimeout | typeof setInterval,
+//   cb: T,
+//   delay: number,
+//   ...args: Parameters<T>
+// ) {
+//   const [timer, setTimer] = useState<ReturnType<typeof f>>();
+
+//   const setTime = () => {
+//     const timer = f(cb, delay, ...args);
+//     setTimer(timer);
+//     return timer;
+//   };
+//   const clear = (t?: ReturnType<typeof f>) =>
+//     f === setTimeout ? clearTimeout(t || timer) : clearInterval(t || timer);
+//   const reset = () => {
+//     clear();
+//     // setTimer(f(cb, delay, ...args));
+//     setTime();
+//   };
+
+//   useEffect(() => {
+//     // const timer = f(cb, delay, ...args);
+//     // setTimer(timer);
+
+//     // setTimer(f(cb, delay, ...args));
+//     const timer = setTime();
+
+//     // return () => clearTimeout(timer);
+//     return () => clear(timer);
+//   }, []);
+
+//   return { clear, reset };
+// }
 
 export function useInterval<T extends (...args: Parameters<T>) => void>(
   cb: T,
   delay: number,
   ...args: Parameters<T>
 ) {
-  return time(setInterval, cb, delay, ...args);
+  return useTime(setInterval, cb, delay, ...args);
 }
 
 export function useTimeout<T extends () => void>(
@@ -68,5 +103,32 @@ export function useTimeout<T extends () => void>(
   delay: number,
   ...args: Parameters<T>
 ) {
-  return time(setTimeout, cb, delay, ...args);
+  return useTime(setTimeout, cb, delay, ...args);
+}
+
+// const [searchStr, setSearchStr] = useState('');
+// const dv = useDebounce(searchStr, delay) ===> filter
+export function useDebounce<T>(state: T, delay: number, deps: unknown[] = []) {
+  const [debouncedValue, setDebouncedValue] = useState<T>(state);
+  const { reset } = useTimeout(() => setDebouncedValue(state), delay);
+  useEffect(() => {
+    reset(); // clear & setTimeout
+  }, [state, ...deps]);
+
+  return debouncedValue;
+}
+
+export function useDebounceWithoutTimerHook<T>(
+  state: T,
+  delay: number,
+  deps: unknown[] = []
+) {
+  const [debouncedValue, setDebouncedValue] = useState<T>(state);
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedValue(state), delay);
+
+    return () => clearTimeout(timer);
+  }, [state, ...deps]);
+
+  return debouncedValue;
 }
