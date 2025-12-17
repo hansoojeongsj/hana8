@@ -1,12 +1,14 @@
 import { PlusIcon } from 'lucide-react';
 import { useEffect, useMemo, useReducer, useRef, useState } from 'react';
-import { useInterval } from '../hooks/interval';
 import { type ItemType, useSession } from '../hooks/SessionContext';
+import { useDebounce } from '../hooks/useDebounce';
 import { useFetch } from '../hooks/useFetch';
+import { useInterval } from '../hooks/useTimer';
 import Item from './Item';
 import Login from './Login';
 import Profile, { type ProfileHandler } from './Profile';
 import Button from './ui/Button';
+import LabelInput from './ui/LabelInput';
 
 export default function My() {
   const { session } = useSession();
@@ -76,6 +78,30 @@ export default function My() {
     [session.cart]
   );
 
+  // 검색 1
+  const [search, setSearch] = useState('');
+
+  const items = session.cart.length ? session.cart : (data ?? []);
+  /*
+
+  const filteredItems = useMemo(() => {
+    if (!search.trim()) return items;
+
+    return items.filter((item) =>
+      item.name.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [items, search]);
+*/
+
+  const debouncedSearch = useDebounce(search, 700);
+  const filteredItems = useMemo(() => {
+    if (!debouncedSearch.trim()) return items;
+
+    return items.filter((item) =>
+      item.name.toLowerCase().includes(debouncedSearch.toLowerCase())
+    );
+  }, [items, debouncedSearch]);
+
   return (
     <>
       <h1 className='text-xl'>
@@ -98,8 +124,32 @@ export default function My() {
         {item101?.name}
       </a>
       <h2 className='text-xl'>Tot: {totalPrice.toLocaleString()}원</h2>
+      {/* 여기 검색 !! */}
+      <LabelInput
+        label='search'
+        onChange={(e) => setSearch(e.target.value)}
+        autoComplete='off'
+      />
+      {/* <div className='flex items-center gap-2'>
+        <label htmlFor='search-input'>search:</label>
+        <input
+          id='search-input'
+          type='text'
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder='search...'
+          className='border px-2 py-1'
+        />
+      </div> */}
+
       <ul>
-        {(session.cart.length ? session.cart : data)?.map((item) => (
+        {/* {(session.cart.length ? session.cart : data)?.map((item) => ( */}
+
+        {/* {(session.cart.length ? session.cart : data)
+          ?.filter((item) => item.name.includes(debouncedSearch))
+          .map((item) => ( */}
+
+        {filteredItems.map((item) => (
           <li key={item.id}>
             <Item item={item} />
           </li>
