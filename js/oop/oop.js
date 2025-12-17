@@ -41,11 +41,9 @@ const proxyObj = new Proxy(kim, {
   },
 });
 
-console.log('🚀 ~ id:', kim.id);
-console.log('🚀 ~ name:', proxyObj.fullName, kim.fullName);
-
-console.log(proxyObj instanceof Emp);
-
+// console.log('🚀 ~ id:', kim.id);
+// console.log('🚀 ~ name:', proxyObj.fullName, kim.fullName);
+// console.log(proxyObj instanceof Emp);
 // ------------
 // Emp 가장 위에 존재함. 한번에 실행 시키기
 
