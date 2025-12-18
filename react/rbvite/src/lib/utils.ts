@@ -1,9 +1,6 @@
-export function isString(str: unknown): str is string {
-  return typeof str === 'string';
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
 }
-export const isErrorWithMessage = (err: unknown): err is { message: string } =>
-  err instanceof Error ||
-  (err !== null &&
-    typeof err === 'object' &&
-    'message' in err &&
-    typeof err.message === 'string');
