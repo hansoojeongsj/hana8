@@ -3,7 +3,7 @@ import { useCounter } from '../hooks/CounterContext';
 import { useSession } from '../hooks/SessionContext';
 import { useFetch } from '../hooks/useFetch';
 import { useToggle } from '../hooks/useToggle';
-import Button from './ui/Button';
+import Btn from './ui/Btn';
 
 export default function Hello({ children }: PropsWithChildren) {
   const { count, plusCount } = useCounter();
@@ -61,9 +61,9 @@ export default function Hello({ children }: PropsWithChildren) {
         {age && <small className='text-sm'>({age})</small>}
       </h2>
       <div>{children}</div>
-      <Button className='font-bold' onClick={plusCount}>
+      <Btn className='font-bold' onClick={plusCount}>
         count + 1
-      </Button>
+      </Btn>
       <button onClick={toggle}>Toggle</button>
     </div>
   );

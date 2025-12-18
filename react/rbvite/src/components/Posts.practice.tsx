@@ -1,5 +1,5 @@
 import { useActionState } from 'react';
-import Button from './ui/Button';
+import Btn from './ui/Btn';
 import LabelInput from './ui/LabelInput';
 import { Spinner } from './ui/Spinner';
 
@@ -39,7 +39,7 @@ export default function Practice() {
           autoComplete='off'
         />
 
-        <Button disabled={isPending}>search</Button>
+        <Btn disabled={isPending}>search</Btn>
       </form>
 
       <ul className='space-y-2'>

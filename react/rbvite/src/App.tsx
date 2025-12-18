@@ -1,4 +1,3 @@
-import './App.css';
 import Hello from './components/Hello';
 import My from './components/My';
 import Practice from './components/Posts.practice';

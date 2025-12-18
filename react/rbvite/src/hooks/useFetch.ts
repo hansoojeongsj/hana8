@@ -1,5 +1,4 @@
 import { useLayoutEffect, useState } from 'react';
-import { isErrorWithMessage } from '../lib/utils';
 
 // {data, isLoading, error} = useFetch(url, [id])
 export function useFetch<T>(url: string, deps: unknown[] = []) {
@@ -45,3 +44,13 @@ export function useFetch<T>(url: string, deps: unknown[] = []) {
 
   return { data, isLoading, error };
 }
+
+export function isString(str: unknown): str is string {
+  return typeof str === 'string';
+}
+const isErrorWithMessage = (err: unknown): err is { message: string } =>
+  err instanceof Error ||
+  (err !== null &&
+    typeof err === 'object' &&
+    'message' in err &&
+    typeof err.message === 'string');
