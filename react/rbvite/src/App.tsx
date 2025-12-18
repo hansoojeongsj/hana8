@@ -1,6 +1,7 @@
 import './App.css';
 import Hello from './components/Hello';
 import My from './components/My';
+import Practice from './components/Posts.practice';
 import { useCounter } from './hooks/CounterContext';
 import { SessionProvider } from './hooks/SessionContext';
 
@@ -15,6 +16,9 @@ function App() {
         <My />
         {count < 50 && <Hello>반갑습니다</Hello>}
       </SessionProvider>
+      <div className='mt-10 pb-10'>
+        <Practice />
+      </div>
     </div>
   );
 }

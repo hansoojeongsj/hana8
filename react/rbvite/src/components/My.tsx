@@ -16,6 +16,7 @@ import { useThrottle } from '../hooks/useDebounce';
 import { useInterval } from '../hooks/useTimer';
 import Item from './Item';
 import Login from './Login';
+import Posts from './Posts';
 import Profile, { type ProfileHandler } from './Profile';
 import Button from './ui/Button';
 import LabelInput from './ui/LabelInput';
@@ -224,6 +225,8 @@ export default function My() {
           )}
         </li>
       </ul>
+      <h1 className='text-4xl pt-10'>Trythis - 81p</h1>
+      <Posts />
     </>
   );
 }
