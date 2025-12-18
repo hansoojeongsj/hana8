@@ -1,5 +1,6 @@
-import { Loader2Icon, PlusIcon } from 'lucide-react';
+import { PlusIcon } from 'lucide-react';
 import {
+  useActionState,
   useDeferredValue,
   useEffect,
   useMemo,
@@ -9,7 +10,8 @@ import {
   useTransition,
   type ChangeEvent,
 } from 'react';
-import { useSession } from '../hooks/SessionContext';
+import { useFormStatus } from 'react-dom';
+import { useSession, type ItemType } from '../hooks/SessionContext';
 import { useThrottle } from '../hooks/useDebounce';
 import { useInterval } from '../hooks/useTimer';
 import Item from './Item';
@@ -17,6 +19,7 @@ import Login from './Login';
 import Profile, { type ProfileHandler } from './Profile';
 import Button from './ui/Button';
 import LabelInput from './ui/LabelInput';
+import { Spinner } from './ui/Spinner';
 
 export default function My() {
   const { session } = useSession();
@@ -122,14 +125,27 @@ export default function My() {
   // useEffect(() => {
   //   clearTimeout(searchStr);
   // }, [deferredStr]);
-
+  const [searchResult, setSearchResult] = useState<ItemType[]>([]);
   const [isSearching, startSearchTransition] = useTransition();
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     startSearchTransition(async () => {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      setSearchStr(e.target.value);
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const str = e.target.value;
+      setSearchStr(str);
+      setSearchResult(session.cart.filter((item) => item.name.includes(str)));
     });
   };
+
+  // const [results, search, isPending] = useActionState<ItemType[], FormData>(
+  const [results, search, isPending] = useActionState(
+    async (preResults: ItemType[], formData: FormData) => {
+      const str = formData.get('ActionState') as string;
+      console.log('******', preResults, str);
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      return session.cart.filter((item) => item.name.includes(str));
+    },
+    []
+  );
 
   return (
     <>
@@ -153,13 +169,31 @@ export default function My() {
         {item101?.name}
       </a>
       <h2 className='text-xl'>Tot: {totalPrice.toLocaleString()}원</h2>
+
+      {isPending ? (
+        <Spinner />
+      ) : (
+        <div>SR_ActionState :{results.map((item) => item.name).join()}</div>
+      )}
+
+      <div>SR_Transition: {searchResult.map((item) => item.name).join()}</div>
       {isSearching ? (
-        <Loader2Icon className='animate-spin' />
+        <Spinner />
       ) : (
         <h2 className='text-xl text-red-500'>
           {searchStr} : {deferredStr} : {debouncedSearchStr}
         </h2>
       )}
+      <form className='flex gap-2'>
+        <LabelInput label='ActionState' autoComplete='off' />
+        <button formAction={search}>Action</button>
+        <SearchButton />
+      </form>
+      <LabelInput
+        label='Transition'
+        onChange={handleSearch}
+        autoComplete='off'
+      />
       <LabelInput label='search' onChange={handleSearch} autoComplete='off' />
       <ul>
         {/* {(session.cart.length ? session.cart : data)?.map((item) => ( */}
@@ -192,4 +226,10 @@ export default function My() {
       </ul>
     </>
   );
+}
+
+function SearchButton() {
+  const { pending, data } = useFormStatus();
+  if (data) console.log('ddddddd>>', data, pending);
+  return <button disabled={pending}>SearchButton</button>;
 }
