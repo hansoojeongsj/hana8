@@ -16,7 +16,6 @@ import { useThrottle } from '../hooks/useDebounce';
 import { useInterval } from '../hooks/useTimer';
 import Item from './Item';
 import Login from './Login';
-import Posts from './Posts';
 import Profile, { type ProfileHandler } from './Profile';
 import Btn from './ui/Btn';
 import LabelInput from './ui/LabelInput';
@@ -170,13 +169,11 @@ export default function My() {
         {item101?.name}
       </a>
       <h2 className='text-xl'>Tot: {totalPrice.toLocaleString()}원</h2>
-
       {isPending ? (
         <Spinner />
       ) : (
         <div>SR_ActionState :{results.map((item) => item.name).join()}</div>
       )}
-
       <div>SR_Transition: {searchResult.map((item) => item.name).join()}</div>
       {isSearching ? (
         <Spinner />
@@ -225,8 +222,6 @@ export default function My() {
           )}
         </li>
       </ul>
-      <h1 className='text-4xl pt-10'>Trythis - 81p</h1>
-      <Posts />
     </>
   );
 }

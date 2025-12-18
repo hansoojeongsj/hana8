@@ -1,6 +1,9 @@
+import { Route, Routes } from 'react-router-dom';
 import Hello from './components/Hello';
+import Home from './components/Home';
 import My from './components/My';
-import Practice from './components/Posts.practice';
+import Nav from './components/Nav';
+import Posts from './components/Posts';
 import { useCounter } from './hooks/CounterContext';
 import { SessionProvider } from './hooks/SessionContext';
 
@@ -12,12 +15,20 @@ function App() {
     <div className='grid place-items-center h-screen mx-2'>
       <h1 className='text-3xl'>count: {count}</h1>
       <SessionProvider>
-        <My />
-        {count < 50 && <Hello>반갑습니다</Hello>}
+        <Nav />
+        <div className='grid place-items-center h-screen mx-2'>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/my' element={<My />} />
+            <Route path='/posts' element={<Posts />} />
+            <Route path='/hello' element={<Hello />} />
+            <Route path='*' element={<h1>경로잘못쳤음!</h1>} />
+          </Routes>
+        </div>
       </SessionProvider>
-      <div className='mt-10 pb-10'>
+      {/* <div className='mt-10 pb-10'>
         <Practice />
-      </div>
+      </div> */}
     </div>
   );
 }
