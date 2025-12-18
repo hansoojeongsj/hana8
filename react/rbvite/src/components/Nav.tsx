@@ -1,5 +1,6 @@
 import { useSession } from '@/hooks/SessionContext';
-import { Link } from 'react-router-dom';
+import { cn } from '@/lib/utils';
+import { Link, NavLink } from 'react-router-dom';
 
 export default function Nav() {
   const {
@@ -10,13 +11,26 @@ export default function Nav() {
     <nav className='flex justify-between m-5'>
       <ul className='flex gap-5'>
         <li>
-          <Link to={'/'}>Home</Link>
+          <NavLink
+            to='/'
+            className={({ isActive }) => cn({ 'text-[#45C00A]': isActive })}
+          >
+            Home
+          </NavLink>
         </li>
         <li>
-          <Link to={'/my'}>My</Link>
+          <NavLink to={'/my'}>My</NavLink>
         </li>
         <li>
-          <Link to={'/hello'}>Hello</Link>
+          <NavLink to={'/profile'} replace>
+            Profile
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to={'/items'}>Items</NavLink>
+        </li>
+        <li>
+          <NavLink to={'/hello'}>Hello</NavLink>
         </li>
         <li>
           <Link to={'/posts'}>Posts</Link>

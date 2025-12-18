@@ -45,7 +45,7 @@ function useTime<T extends (...args: Parameters<T>) => void>(
   const clear = () => {
     if (!timerRef.current) return;
     (f === setTimeout ? clearTimeout : clearInterval)(timerRef.current);
-    timerRef.current = undefined;
+    if (f === setTimeout) timerRef.current = undefined;
   };
 
   const reset = () => {

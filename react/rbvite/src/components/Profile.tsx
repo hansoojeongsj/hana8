@@ -32,11 +32,20 @@ export default function Profile({ ref }: Prop) {
 
   return (
     <>
-      <h1 className='text-2xl'>LoginUser: {loginUser?.name}</h1>
+      <h1 className='text-2xl'>
+        {loginUser ? (
+          <span className='font-bold text-primary'>
+            LoginUser: {loginUser.name}
+          </span>
+        ) : (
+          <span className='text-6xl text-violet-800'>로그인해주세요</span>
+        )}
+      </h1>
+
       <div className='flex gap-5'>
         <Btn
           onClick={logout}
-          className='bg-red-500 hover:bg-red-400 text-white'
+          className='bg-purple-500 hover:bg-purple-300 text-white'
         >
           LogOut
         </Btn>
