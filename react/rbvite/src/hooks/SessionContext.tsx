@@ -55,7 +55,7 @@ type SessionContextValue = {
   login: LoginFunction;
   logout: () => void;
   loginHandlerRef: RefObject<LoginHandler | null> | null;
-  removeItem: (id: number) => void;
+  removeItem: (id: number) => boolean;
   saveItem: (item: ItemType) => number;
 };
 
@@ -65,7 +65,7 @@ const SessionContext = createContext<SessionContextValue>({
   login: () => {},
   logout: () => {},
   loginHandlerRef: null,
-  removeItem: () => {},
+  removeItem: () => false,
   saveItem: () => 0,
 });
 
@@ -137,7 +137,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
   };
 
   const removeItem = (id: number) => {
-    if (!confirm('Are u sure?')) return;
+    if (!confirm('Are u sure?')) return false;
 
     // filter 자체가 새 배열을 반환하므로 스프레드 연산자는 불필요
     // setSession({
@@ -146,6 +146,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
     // // cart: session.cart.filter((item) => item.id !== id),
     // });
     dispatch({ type: 'REMOVE-ITEM', payload: id });
+    return true;
   };
 
   const saveItem = ({ id, name, price }: ItemType) => {
