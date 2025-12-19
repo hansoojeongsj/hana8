@@ -7,12 +7,13 @@ import ItemDetailLayout from './components/ItemDetailLayout';
 import ItemEdit from './components/ItemEdit';
 import ItemLayout from './components/ItemLayout';
 import Items from './components/Items';
+import Login from './components/Login';
 import My from './components/My';
+import Nav from './components/Nav';
+import NotFound from './components/NotFound';
 import Posts from './components/Posts';
 import Profile, { type ProfileHandler } from './components/Profile';
 import { SessionProvider } from './hooks/SessionContext';
-import Nav from './components/Nav';
-import NotFound from './components/NotFound';
 
 function App() {
   const profileHandlerRef = useRef<ProfileHandler>(null);
@@ -38,6 +39,7 @@ function App() {
           </Route>
           <Route path='/posts' element={<Posts />} />
           <Route path='/hello' element={<Hello />} />
+          <Route path='/login' element={<Login />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
         <a
