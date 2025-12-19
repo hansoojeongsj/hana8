@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function NotFound() {
   return (
-    <div className='flex min-h-screen w-[100%] flex-col items-center justify-center gap-6 bg-black text-white text-center'>
+    <div className='flex min-h-screen w-full flex-col items-center justify-center gap-6 bg-black text-white text-center'>
       <div className='flex gap-4 text-5xl animate-bounce'>
         <AlertTriangle className='text-yellow-400' />
         <Ghost className='text-purple-400 animate-pulse' />

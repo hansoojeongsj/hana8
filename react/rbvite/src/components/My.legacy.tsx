@@ -205,15 +205,13 @@ export default function My() {
         {session.cart
           ?.filter((item) => item.name.includes(debouncedSearchStr))
           .map((item) => (
-            <li key={item.id}>
-              <Item item={item} />
-            </li>
+            <li key={item.id}>{/* <Item item={item} /> */}</li>
           ))}
         <li className='text-center'>
           {isAdding ? (
             <Item
-              item={{ id: 0, name: 'New Item', price: 3000 }}
-              toggleAdding={toggleAdding}
+            // item={{ id: 0, name: 'New Item', price: 3000 }}
+            // toggleAdding={toggleAdding}
             />
           ) : (
             <Btn onClick={toggleAdding} className=''>

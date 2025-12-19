@@ -49,13 +49,14 @@ const getStorage = () => {
   }
   return JSON.parse(localStorage.getItem(SKEY) || '[]') as ItemType[];
 };
+
 type SessionContextValue = {
   session: Session;
   login: LoginFunction;
   logout: () => void;
   loginHandlerRef: RefObject<LoginHandler | null> | null;
   removeItem: (id: number) => void;
-  saveItem: (item: ItemType) => void;
+  saveItem: (item: ItemType) => number;
 };
 
 // 1. createContext
@@ -65,7 +66,7 @@ const SessionContext = createContext<SessionContextValue>({
   logout: () => {},
   loginHandlerRef: null,
   removeItem: () => {},
-  saveItem: () => {},
+  saveItem: () => 0,
 });
 
 type Action =
@@ -107,6 +108,7 @@ const reducer = (session: Session, { type, payload }: Action) => {
 
 // 2. Provider
 export function SessionProvider({ children }: PropsWithChildren) {
+  // const [session, setSession] = useState<Session>(DefaultSession);
   const [session, dispatch] = useReducer(reducer, {
     loginUser: { id: 1, name: 'Hong', age: 33 },
     cart: getStorage(),
@@ -124,12 +126,14 @@ export function SessionProvider({ children }: PropsWithChildren) {
 
   const logout = () => {
     // session.loginUser = null; // fail!!
+    // setSession({ ...session, loginUser: null });
     dispatch({ type: 'LOGOUT', payload: null });
   };
 
   const login: LoginFunction = (name, age) => {
     if (loginHandlerRef.current?.validate())
       dispatch({ type: 'LOGIN', payload: { id: 1, name, age } });
+    // setSession({ ...session, loginUser: { id: 1, name, age } });
   };
 
   const removeItem = (id: number) => {
@@ -139,46 +143,37 @@ export function SessionProvider({ children }: PropsWithChildren) {
     // setSession({
     //   ...session,
     //   cart: [...session.cart.filter((item) => item.id !== id)],
+    // // cart: session.cart.filter((item) => item.id !== id),
     // });
-
-    dispatch({
-      type: 'REMOVE-ITEM',
-      payload: id,
-    });
+    dispatch({ type: 'REMOVE-ITEM', payload: id });
   };
 
   const saveItem = ({ id, name, price }: ItemType) => {
     const item = id && session.cart.find((item) => item.id === id);
 
-    // updateItem
-    // session.cart.map(item => item.id === id ? { id: item.id, name, price } : item);
-
     if (item) {
-      // item.name = name;
-      // item.price = price;
-      dispatch({
-        type: 'EDIT-ITEM',
-        payload: { id, name, price },
-      });
-    } else {
-      const newItem = {
-        id: Math.max(...session.cart.map((item) => item.id), 0) + 1,
-        name,
-        price,
-      };
+      dispatch({ type: 'EDIT-ITEM', payload: { id, name, price } });
+      return id;
+    }
+
+    const newItem = {
+      id: Math.max(...session.cart.map((item) => item.id), 0) + 1,
+      name,
+      price,
+    };
 
       // session은 state라 바꿀 수 없음
       // session.cart = [...session.cart];
-      dispatch({ type: 'ADD-ITEM', payload: newItem });
-    }
+    dispatch({ type: 'ADD-ITEM', payload: newItem });
+    return newItem.id;
   };
 
   return (
-    <SessionContext.Provider
+    <SessionContext
       value={{ session, login, logout, loginHandlerRef, removeItem, saveItem }}
     >
       {children}
-    </SessionContext.Provider>
+    </SessionContext>
   );
 }
 
