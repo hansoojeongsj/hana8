@@ -35,7 +35,7 @@ export default function Items() {
       {isSearching ? (
         <Spinner />
       ) : (
-        <h2 className='text-xl text-red-500'>
+        <h2 className='text-xl text-primary'>
           {searchStr} : {deferredStr} : {debouncedSearchStr}
         </h2>
       )}

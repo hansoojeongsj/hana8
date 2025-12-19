@@ -27,6 +27,8 @@ export default function Item() {
   const params = useParams<{ id: string }>();
   const id = Number(params.id);
   // const [searchParam, setSearchParam] = useSearchParams({ q: '', p: 'xxx' });
+  // const [searchParam] = useSearchParams({ q: '', p: 'xxx' });
+
   // console.log('🚀 ~ searchParam:', Object.fromEntries(searchParam.entries()));
 
   const { removeItem, saveItem } = useSession();
