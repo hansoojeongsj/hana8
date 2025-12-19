@@ -23,8 +23,11 @@ export default function Item() {
     session: { cart },
   } = useSession();
   const navigate = useNavigate();
+  // q=111&p=222
   const params = useParams<{ id: string }>();
   const id = Number(params.id);
+  // const [searchParam, setSearchParam] = useSearchParams({ q: '', p: 'xxx' });
+  // console.log('🚀 ~ searchParam:', Object.fromEntries(searchParam.entries()));
 
   const { removeItem, saveItem } = useSession();
   const [isEditing, setEditing] = useState(!id);
@@ -34,6 +37,8 @@ export default function Item() {
 
   useEffect(() => {
     if (isEditing) nameRef.current?.focus();
+    // setSearchParam('q=100');
+    // setSearchParam({ q: '1000' });
   }, [isEditing]);
 
   const item = !id
@@ -89,7 +94,7 @@ export default function Item() {
     setEditing(false);
     setDirty(false);
 
-    if (!id) navigate(`/items/${savedId}`);
+    if (!id) navigate(`/items/${savedId}`, { replace: true });
   };
 
   const makeEdit = () => {
@@ -146,7 +151,7 @@ export default function Item() {
               onClick={() => {
                 if (removeItem) removeItem(item.id);
               }}
-              className='ml-2 px-1 py-0 text-sm bg-red-500 hover:bg-red-600 text-white shadow-lg hover:shadow-2xl active:scale-150 transition duration-300'
+              className='ml-2 px-1 py-0 text-sm bg-primary text-white hover:bg-secondary hover:text-primary shadow-lg hover:shadow-2xl active:scale-150 transition duration-300'
             >
               X
             </Btn>

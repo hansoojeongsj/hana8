@@ -8,7 +8,8 @@
     @apply underline underline-offset-2;
   }
   a.active {
-    color: #8349ff no-underline;
+    @apply no-underline;
+    color: #8349ff;
   }
   input {
     @apply border border-gray-400 rounded-lg py-1 px-2 focus:ring-1 focus:ring-green-300 focus:border-transparent;
