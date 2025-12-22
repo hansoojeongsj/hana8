@@ -9,6 +9,8 @@ export default function HelloLayout({ children }: PropsWithChildren) {
         <Link href={'/'}>Home</Link>
         <Link href={'/hello'}>Hello</Link>
         <Link href={'/hello/morning'}>Morning</Link>
+        <Link href={'/hello/afternoon'}>Afternoon</Link>
+        <Link href={'/hello/evening'}>Evening</Link>
       </div>
       <div className="border p-5 text-center">{children}</div>
     </>
