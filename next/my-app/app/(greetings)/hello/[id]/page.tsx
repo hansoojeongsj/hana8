@@ -1,11 +1,18 @@
-// 'use client';
+'use client';
 
-type Props = {
-  params: Promise<{ id: number }>;
-};
+import { useParams } from 'next/navigation';
 
-export default async function HelloId({ params }: Props) {
-  // const { id } = useParams<{ id: string }>();
-  const { id } = await params;
-  return `HelloId is ${id}`;
+export default function HelloId() {
+  const { id } = useParams<{ id: string }>();
+  return `Hello id is ${id}`;
 }
+
+// type Props = {
+//   params: Promise<{ id: number }>;
+// };
+
+// export default function HelloId({ params }: Props) {
+//   // const { id } = await params;
+//   const { id } = use(params);
+//   return `Hello id is ${id}`;
+// }
