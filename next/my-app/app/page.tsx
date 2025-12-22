@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import HelloPage from './(greetings)/hello/page';
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
           height={20}
           priority
         />
+        <HelloPage />
         <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
           <h1 className="max-w-xs font-semibold text-3xl text-black leading-10 tracking-tight dark:text-zinc-50">
             To get started, edit the page.tsx file.
