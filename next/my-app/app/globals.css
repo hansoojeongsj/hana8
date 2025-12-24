@@ -123,10 +123,10 @@
     @apply bg-background text-foreground;
   }
   a {
-    @apply text-blue-400;
+    @apply text-violet-500;
   }
   a:hover {
-    @apply underline underline-offset-2 text-blue-600;
+    @apply underline underline-offset-2 text-violet-700;
   }
   button {
     @apply cursor-pointer;
