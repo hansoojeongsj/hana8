@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { use } from 'react';
+import { blurDataURL_dark } from '@/app/(greetings)/hi/constants';
 import type { Photo } from '../page';
 
 type Props = {
@@ -24,6 +25,7 @@ export default function PhotoView({ params }: Props) {
           height={height}
           placeholder="blur"
           // blurDataURL="/file.svg"
+          blurDataURL={blurDataURL_dark}
         />
         <Link href="/photos">List</Link>
       </div>
