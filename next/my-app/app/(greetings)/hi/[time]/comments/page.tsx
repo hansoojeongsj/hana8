@@ -1,5 +1,7 @@
 import { use } from 'react';
 
+export const generateStaticParams = async () => [{ time: 'morningX' }];
+
 export default function Comments({
   params,
 }: {
