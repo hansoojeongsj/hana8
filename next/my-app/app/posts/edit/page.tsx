@@ -42,6 +42,7 @@ export default function PostEdit() {
     },
     undefined,
   );
+
   return (
     <>
       <h1 className="text-center font-semibold text-2xl">게시글 작성</h1>
