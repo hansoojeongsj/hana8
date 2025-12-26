@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import Link from 'next/link';
 import { ModeToggle } from '@/components/ModeToggle';
 import { ThemeProvider } from '@/components/theme-provider';
+import UserProfile from '@/components/UserProfile';
 import { Button } from '@/components/ui/button';
 import './globals.css';
 
@@ -32,17 +33,22 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} mx-5 antialiased`}
       >
         <ThemeProvider>
-          <nav className="flex gap-3">
-            Navigator
-            <Link href="/hello">Hello</Link>
-            <Link href="/hi">Hi</Link>
-            <Link href="/shop/123">123</Link>
-            <Link href="/shop/123/456">456</Link>
-            <Link href="/intercept">Intercept</Link>
-            <Link href="/photos">Photos</Link>
-            <Link href="/caches">Caches</Link>
-            <Button variant={'apply'}>SignIn</Button>
-            <ModeToggle />
+          <nav className="flex items-center justify-between p-2">
+            <div className="flex gap-3">
+              Navigator
+              <Link href="/hello">Hello</Link>
+              <Link href="/hi">Hi</Link>
+              <Link href="/shop/123">123</Link>
+              <Link href="/shop/123/456">456</Link>
+              <Link href="/intercept">Intercept</Link>
+              <Link href="/photos">Photos</Link>
+              <Link href="/caches">Caches</Link>
+              <Button variant={'apply'}>SignIn</Button>
+            </div>
+            <div className="flex">
+              <ModeToggle />
+              <UserProfile />
+            </div>
           </nav>
           <div className="border p-3">{children}</div>
           <footer className="text-center">Footer</footer>
