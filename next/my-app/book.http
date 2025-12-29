@@ -1,0 +1,14 @@
+@api = http://localhost:3000/api/
+### book List
+GET {{api}}/books
+
+### add book
+POST {{api}}/books
+
+{
+  "title":"new book",
+  "writer":"jade",
+}
+
+### get a book.   fetch().then(res => res.json())
+GET {{api}}/books/22
