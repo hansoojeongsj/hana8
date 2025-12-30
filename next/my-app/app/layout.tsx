@@ -47,7 +47,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <nav className="flex items-center justify-between">
-              <div className="flex gap-3">
+              <div className="flex h-5 gap-3 [&>div.shrink-0]:m-1 [&>div.shrink-0]:bg-violet-300">
                 Navigator
                 <Link href="/hello">Hello</Link>
                 <Link href="/hi">Hi</Link>

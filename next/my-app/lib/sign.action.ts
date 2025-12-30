@@ -1,5 +1,6 @@
 'use server';
 
+import { AuthError } from 'next-auth';
 import { signIn, signOut } from './auth';
 
 export type Provider = 'google' | 'github' | 'credentials';
@@ -13,11 +14,41 @@ const login = async (provider: Provider, formData: FormData) => {
   await signIn(provider, { redirectTo });
 };
 
-export const loginEmail = async (formData: FormData) => {
-  const redirectTo = formData.get('redirectTo') as string;
-  const email = formData.get('redirectTo') as string;
-  const passwd = formData.get('redirectTo') as string;
-  await signIn('credentials', { redirectTo, email, passwd });
+export type ValidError<T> = {
+  error: {
+    [k in keyof T]?: string;
+  };
+  data: T;
+};
+
+export type EmailPasswd = { email: string; passwd: string };
+
+export const loginEmail = async (
+  formData: FormData,
+): Promise<[ValidError<EmailPasswd>] | [undefined, EmailPasswd]> => {
+  const email = formData.get('email') as string;
+  const passwd = formData.get('passwd') as string;
+  const data = { email, passwd };
+  try {
+    if (!email) return [{ error: { email: 'Input the email!' }, data }];
+    if (!passwd) return [{ error: { passwd: 'Input the passwd!' }, data }];
+
+    const ret = await signIn('credentials', { redirect: false, email, passwd });
+    console.log('🚀 ~ signIn.return:', ret);
+    return [undefined, data];
+  } catch (err) {
+    console.log('🚀 ~ err:', err, err instanceof AuthError);
+
+    if (err instanceof AuthError) {
+      const msg = err.message || 'EmailSignInError';
+      const email = msg.substring(0, msg.indexOf('Read more'));
+      if (err.type === 'EmailSignInError') {
+        return [{ error: { email }, data }];
+      }
+    }
+
+    return [{ error: { email: JSON.stringify(err) }, data }];
+  }
 };
 
 export const loginGoogle = async (formData: FormData) =>
