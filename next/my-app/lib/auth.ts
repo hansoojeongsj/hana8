@@ -23,7 +23,12 @@ export const {
       async authorize(credentials) {
         console.log('🚀 ~ credentials:', credentials);
         const { email, passwd } = credentials;
-        return { id: '1', email: email as string, name: 'HONG', passwd };
+        return {
+          id: '1',
+          email: email as string,
+          name: 'HONG',
+          passwd: passwd as string,
+        };
       },
     }),
     Google,
@@ -34,9 +39,13 @@ export const {
       console.log('🚀 ~ account:', account);
       // console.log('🚀 signIn - profile:', profile);
       console.log('🚀 signIn - user:', user);
-      if (user.email === 'jade@gmail.com')
-        throw makeAuthError('EmailSignInError', 'Not Exists Email!');
 
+      if (account?.provider === 'credentials') {
+        if (user.email === 'jade@gmail.com')
+          throw makeAuthError('EmailSignInError', 'Not Exists Email!');
+
+        if (!user.passwd) return false;
+      }
       return true;
     },
     async jwt({ token, user, trigger }) {
@@ -47,6 +56,7 @@ export const {
         token.id = user.id;
         token.email = user.email;
         token.name = user.name;
+        token.isadmin = user.isadmin;
       }
       return token;
     },
@@ -55,6 +65,7 @@ export const {
         session.user.id = user.id;
         session.user.email = user.email;
         session.user.name = user.name;
+        session.user.isadmin = user.isadmin;
       }
       return session;
     },

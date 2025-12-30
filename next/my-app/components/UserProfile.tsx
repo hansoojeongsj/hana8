@@ -1,7 +1,6 @@
 'use client';
 
-import type { Route } from 'next';
-import { redirect, usePathname } from 'next/navigation';
+import { redirect } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 // import Image from 'next/image';
 // import d from '@/public/profile_dummy.png';
@@ -16,12 +15,11 @@ const DummyProfileImage = '/profile_dummy.png';
 
 export default function UserProfile() {
   const { data } = useSession();
-  const pathname = usePathname();
 
   console.log('🚀 ~ UserProfile - session:', data);
-  if ((!data || !data.user) && pathname !== '/sign') redirect('/sign' as Route);
+  if (!data || !data.user) redirect('/sign');
 
-  const profileImg = data?.user?.image || DummyProfileImage;
+  const profileImg = data.user.image || DummyProfileImage;
   const isMobile = useIsMobile();
 
   // const Comp = isMobile ? Popover : HoverCard;
@@ -41,7 +39,7 @@ export default function UserProfile() {
           className="touch-none md:pointer-events-auto md:touch-auto"
         >
           <Avatar>
-            <AvatarImage src={isMobile ? profileImg : undefined} />
+            <AvatarImage src={profileImg} />
             <AvatarFallback className="text-xl uppercase">
               {'guest'.substring(0, 2)}
             </AvatarFallback>

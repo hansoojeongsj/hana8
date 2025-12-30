@@ -37,7 +37,7 @@ export default function SignForm() {
 
   return (
     <div className="grid place-items-center">
-      <form action={login} className="w-96 space-y-3">
+      <form action={login} className="w-full space-y-3">
         <input type="hidden" name="redirectTo" value={redirectTo} />
 
         <div className="space-y-1">
