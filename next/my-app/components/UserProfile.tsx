@@ -1,7 +1,8 @@
 'use client';
 
-import { redirect } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import { redirect, useRouter } from 'next/navigation';
+import type { Session } from 'next-auth';
+import { useReducer } from 'react';
 // import Image from 'next/image';
 // import d from '@/public/profile_dummy.png';
 import { useIsMobile } from '@/hooks/use-mobile';
@@ -13,11 +14,13 @@ import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 
 const DummyProfileImage = '/profile_dummy.png';
 
-export default function UserProfile() {
-  const { data } = useSession();
-
+export default function UserProfile({ data }: { data: Session }) {
+  // const { data } = useSession();
   console.log('🚀 ~ UserProfile - session:', data);
   if (!data || !data.user) redirect('/sign');
+
+  const router = useRouter();
+  const [isOpen, toggleOpen] = useReducer((p) => !p, false);
 
   const profileImg = data.user.image || DummyProfileImage;
   const isMobile = useIsMobile();
@@ -30,8 +33,13 @@ export default function UserProfile() {
     ? { comp: Popover, trigger: PopoverTrigger, content: PopoverContent }
     : { comp: HoverCard, trigger: HoverCardTrigger, content: HoverCardContent };
 
+  const goToMyInfo = () => {
+    toggleOpen();
+    router.push('/my');
+  };
+
   return (
-    <Comp.comp>
+    <Comp.comp open={isOpen} onOpenChange={toggleOpen}>
       {/* <Image src={d} width={200} height={200} alt="xx" /> */}
       <Comp.trigger asChild>
         <Button
@@ -39,7 +47,7 @@ export default function UserProfile() {
           className="touch-none md:pointer-events-auto md:touch-auto"
         >
           <Avatar>
-            <AvatarImage src={profileImg} />
+            <AvatarImage src={isMobile ? profileImg : undefined} />
             <AvatarFallback className="text-xl uppercase">
               {'guest'.substring(0, 2)}
             </AvatarFallback>
@@ -55,14 +63,17 @@ export default function UserProfile() {
             </Avatar>
           </div>
           <div className="shrink-0 space-y-1">
-            <h4 className="font-semibold text-sm">@{data?.user?.name}</h4>
-            <p className="text-muted-foreground text-sm">{data?.user?.email}</p>
+            <h4 className="font-semibold text-sm">@{data.user.name}</h4>
+            <p className="text-muted-foreground text-sm">{data.user.email}</p>
             <div className="text-muted-foreground text-xs">
               {12} Books
               {23} Marks 00 Followers
             </div>
             <Button onClick={logout} variant={'outline'}>
               LogOut
+            </Button>
+            <Button onClick={goToMyInfo} variant={'outline'} className="ml-3">
+              My Info.
             </Button>
           </div>
         </div>
