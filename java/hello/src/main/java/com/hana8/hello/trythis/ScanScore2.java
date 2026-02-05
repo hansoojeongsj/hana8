@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 import java.util.Scanner;
 
 public class ScanScore2 {
-	static void main() {
+	public static void main(String[] args) {
 		int totScore = 0;
 		int bestScore = 0;
 		String bestMember = "";
