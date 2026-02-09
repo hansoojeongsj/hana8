@@ -31,7 +31,7 @@ public class CalculatorAns {
 
 	public static Operation getOperation(Scanner scanner) {
 		while (true) {
-			System.out.print("연사자(+, -, *, /) ");
+			System.out.print("연산자(+, -, *, /) ");
 			char cmd = scanner.nextLine().charAt(0);
 			if (cmd == '.')
 				throw new IllegalStateException("END");
