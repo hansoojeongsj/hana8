@@ -5,7 +5,10 @@ package com.hana8.hello.trythis;
  * 부서별 최고 점수 구하기 및 역순 출력 예제
  */
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -14,11 +17,26 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+// @ToString(exclude = "dept", callSuper = true)
+@ToString
+@EqualsAndHashCode(exclude = {"score"})
+@AllArgsConstructor
 public class EmpEx {
 	String name;
 	String dept;
 	int score;
 
+	// @ToString.Exclude
+
+	/*
 	EmpEx(String name, String dept, int score) {
 		this.name = name;
 		this.dept = dept;
@@ -41,7 +59,7 @@ public class EmpEx {
 	public String toString() {
 		return "%s (%d)".formatted(name, score);
 	}
-
+*/
 	public void print() {
 		System.out.printf("%s: %s(%d)", dept, name, score);
 	}
@@ -50,7 +68,11 @@ public class EmpEx {
 		System.out.printf("%s: %s(%d)%n", dept, name, score);
 	}
 
-	public static void main(String[] args) {
+	public static EmpBuilder builder() {
+		return new EmpBuilder();
+	}
+
+	public static void main(String[] args) throws IllegalAccessException {
 		List<EmpEx> emps = Arrays.asList(
 			new EmpEx("Hong", "Sales", 85),
 			new EmpEx("Kim", "Sales", 95),
@@ -102,6 +124,70 @@ public class EmpEx {
 				System.out.printf("%s: 최고 득접자 없음!%n", dept);
 			else
 				tEmp.println();
+		}
+		EmpEx x = EmpEx.builder().name("Hong").email("afd@afdas.com").dept("Sales").score(90).build();
+		System.out.println("x = " + x);
+
+		Field[] fields = x.getClass().getDeclaredFields();
+		Arrays.asList(fields).forEach(System.out::println);
+		fields[0].set(x, "Kang");
+	}
+
+	public static class EmpBuilder {
+		private String name;
+		private String dept;
+		private int score;
+		private ArrayList<String> emails;
+
+		EmpBuilder() {
+		}
+
+		public EmpBuilder name(String name) {
+			this.name = name;
+			return this;
+		}
+
+		public EmpBuilder dept(String dept) {
+			this.dept = dept;
+			return this;
+		}
+
+		public EmpBuilder score(int score) {
+			this.score = score;
+			return this;
+		}
+
+		public EmpBuilder email(String email) {
+			if (this.emails == null)
+				this.emails = new ArrayList<String>();
+			this.emails.add(email + "@gmail.com");
+			return this;
+		}
+
+		public EmpBuilder emails(Collection<? extends String> emails) {
+			if (emails == null) {
+				throw new NullPointerException("emails cannot be null");
+			}
+			if (this.emails == null)
+				this.emails = new ArrayList<>();
+			this.emails.addAll(emails);
+			return this;
+		}
+
+		public EmpBuilder clearEmails() {
+			if (this.emails != null)
+				this.emails.clear();
+			return this;
+		}
+
+		public EmpEx build() {
+
+			return new EmpEx(this.name, this.dept, this.score);
+		}
+
+		public String toString() {
+			return "Emp.EmpBuilder(name=" + this.name + ", dept=" + this.dept + ", score=" + this.score + ", emails="
+				+ this.emails + ")";
 		}
 	}
 
