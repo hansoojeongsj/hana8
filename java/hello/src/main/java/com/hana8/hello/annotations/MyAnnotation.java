@@ -1,4 +1,4 @@
-package com.hana8.hello;
+package com.hana8.hello.annotations;
 
 public @interface MyAnnotation {
 	String value() default "";
