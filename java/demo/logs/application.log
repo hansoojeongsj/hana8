@@ -1,0 +1,60 @@
+2026-02-24T10:32:14.761+09:00  INFO 74452 --- [demo] [restartedMain] com.hana8.demo.DemoApplication           : Starting DemoApplication using Java 21.0.9 with PID 74452 (/Users/hansoojeong/Documents/hana8/java/demo/build/classes/java/main started by hansoojeong in /Users/hansoojeong/Documents/hana8/java/demo)
+2026-02-24T10:32:14.762+09:00 DEBUG 74452 --- [demo] [restartedMain] com.hana8.demo.DemoApplication           : Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-02-24T10:32:14.762+09:00  INFO 74452 --- [demo] [restartedMain] com.hana8.demo.DemoApplication           : No active profile set, falling back to 1 default profile: "default"
+2026-02-24T10:32:15.111+09:00  INFO 74452 --- [demo] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-24T10:32:15.111+09:00  INFO 74452 --- [demo] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-02-24T10:32:15.283+09:00  INFO 74452 --- [demo] [restartedMain] com.hana8.demo.DemoApplication           : Started DemoApplication in 0.693 seconds (process running for 0.986)
+2026-02-24T10:37:55.245+09:00  INFO 74452 --- [demo] [restartedMain] com.hana8.demo.DemoApplication           : Starting DemoApplication using Java 21.0.9 with PID 74452 (/Users/hansoojeong/Documents/hana8/java/demo/build/classes/java/main started by hansoojeong in /Users/hansoojeong/Documents/hana8/java/demo)
+2026-02-24T10:37:55.246+09:00 DEBUG 74452 --- [demo] [restartedMain] com.hana8.demo.DemoApplication           : Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-02-24T10:37:55.246+09:00  INFO 74452 --- [demo] [restartedMain] com.hana8.demo.DemoApplication           : No active profile set, falling back to 1 default profile: "default"
+2026-02-24T10:37:55.306+09:00  INFO 74452 --- [demo] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-24T10:37:55.307+09:00  INFO 74452 --- [demo] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-02-24T10:37:55.344+09:00  INFO 74452 --- [demo] [restartedMain] com.hana8.demo.DemoApplication           : Started DemoApplication in 0.112 seconds (process running for 341.082)
+2026-02-24T10:38:10.911+09:00  INFO 74452 --- [demo] [restartedMain] com.hana8.demo.DemoApplication           : Starting DemoApplication using Java 21.0.9 with PID 74452 (/Users/hansoojeong/Documents/hana8/java/demo/build/classes/java/main started by hansoojeong in /Users/hansoojeong/Documents/hana8/java/demo)
+2026-02-24T10:38:10.911+09:00 DEBUG 74452 --- [demo] [restartedMain] com.hana8.demo.DemoApplication           : Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-02-24T10:38:10.911+09:00  INFO 74452 --- [demo] [restartedMain] com.hana8.demo.DemoApplication           : No active profile set, falling back to 1 default profile: "default"
+2026-02-24T10:38:10.963+09:00  INFO 74452 --- [demo] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-24T10:38:10.963+09:00  INFO 74452 --- [demo] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-02-24T10:38:10.994+09:00  INFO 74452 --- [demo] [restartedMain] com.hana8.demo.DemoApplication           : Started DemoApplication in 0.093 seconds (process running for 356.732)
+2026-02-24T10:39:10.923+09:00  INFO 74452 --- [demo] [restartedMain] com.hana8.demo.DemoApplication           : Starting DemoApplication using Java 21.0.9 with PID 74452 (/Users/hansoojeong/Documents/hana8/java/demo/build/classes/java/main started by hansoojeong in /Users/hansoojeong/Documents/hana8/java/demo)
+2026-02-24T10:39:10.924+09:00 DEBUG 74452 --- [demo] [restartedMain] com.hana8.demo.DemoApplication           : Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-02-24T10:39:10.924+09:00  INFO 74452 --- [demo] [restartedMain] com.hana8.demo.DemoApplication           : No active profile set, falling back to 1 default profile: "default"
+2026-02-24T10:39:10.973+09:00  INFO 74452 --- [demo] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-24T10:39:10.973+09:00  INFO 74452 --- [demo] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-02-24T10:39:11.003+09:00  INFO 74452 --- [demo] [restartedMain] com.hana8.demo.DemoApplication           : Started DemoApplication in 0.089 seconds (process running for 416.742)
+2026-02-24 10:39:39 [restartedMain] INFO  com.hana8.demo.DemoApplication - Starting DemoApplication using Java 21.0.9 with PID 74452 (/Users/hansoojeong/Documents/hana8/java/demo/build/classes/java/main started by hansoojeong in /Users/hansoojeong/Documents/hana8/java/demo)
+2026-02-24 10:39:39 [restartedMain] DEBUG com.hana8.demo.DemoApplication - Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-02-24 10:39:39 [restartedMain] INFO  com.hana8.demo.DemoApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-24 10:39:39 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-24 10:39:39 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-02-24 10:39:39 [restartedMain] INFO  com.hana8.demo.DemoApplication - Started DemoApplication in 0.081 seconds (process running for 445.495)
+2026-02-24 10:43:01 [restartedMain] INFO  o.s.boot.StartupInfoLogger - Starting DemoApplication using Java 21.0.9 with PID 74452 (/Users/hansoojeong/Documents/hana8/java/demo/build/classes/java/main started by hansoojeong in /Users/hansoojeong/Documents/hana8/java/demo)
+2026-02-24 10:43:01 [restartedMain] DEBUG o.s.boot.StartupInfoLogger - Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-02-24 10:43:01 [restartedMain] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-24 10:43:01 [restartedMain] INFO  o.apache.juli.logging.DirectJDKLog - Starting service [Tomcat]
+2026-02-24 10:43:01 [restartedMain] INFO  o.apache.juli.logging.DirectJDKLog - Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-02-24 10:43:01 [restartedMain] INFO  o.s.boot.StartupInfoLogger - Started DemoApplication in 0.082 seconds (process running for 646.924)
+2026-02-24 11:08:38 [restartedMain] INFO  o.s.boot.StartupInfoLogger - Starting DemoApplication using Java 21.0.9 with PID 74452 (/Users/hansoojeong/Documents/hana8/java/demo/build/classes/java/main started by hansoojeong in /Users/hansoojeong/Documents/hana8/java/demo)
+2026-02-24 11:08:38 [restartedMain] DEBUG o.s.boot.StartupInfoLogger - Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-02-24 11:08:38 [restartedMain] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-24 11:08:38 [restartedMain] INFO  o.apache.juli.logging.DirectJDKLog - Starting service [Tomcat]
+2026-02-24 11:08:38 [restartedMain] INFO  o.apache.juli.logging.DirectJDKLog - Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-02-24 11:08:38 [restartedMain] INFO  o.s.boot.StartupInfoLogger - Started DemoApplication in 0.111 seconds (process running for 1312.57)
+2026-02-24 11:09:17 [restartedMain] INFO  o.s.boot.StartupInfoLogger - Starting DemoApplication using Java 21.0.9 with PID 74452 (/Users/hansoojeong/Documents/hana8/java/demo/build/classes/java/main started by hansoojeong in /Users/hansoojeong/Documents/hana8/java/demo)
+2026-02-24 11:09:17 [restartedMain] DEBUG o.s.boot.StartupInfoLogger - Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-02-24 11:09:17 [restartedMain] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-24 11:09:17 [restartedMain] INFO  o.apache.juli.logging.DirectJDKLog - Starting service [Tomcat]
+2026-02-24 11:09:17 [restartedMain] INFO  o.apache.juli.logging.DirectJDKLog - Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-02-24 11:09:17 [restartedMain] INFO  o.s.boot.StartupInfoLogger - Started DemoApplication in 0.078 seconds (process running for 1351.374)
+2026-02-24 11:09:22 [restartedMain] INFO  o.s.boot.StartupInfoLogger - Starting DemoApplication using Java 21.0.9 with PID 74452 (/Users/hansoojeong/Documents/hana8/java/demo/build/classes/java/main started by hansoojeong in /Users/hansoojeong/Documents/hana8/java/demo)
+2026-02-24 11:09:22 [restartedMain] DEBUG o.s.boot.StartupInfoLogger - Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-02-24 11:09:22 [restartedMain] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-24 11:09:23 [restartedMain] INFO  o.apache.juli.logging.DirectJDKLog - Starting service [Tomcat]
+2026-02-24 11:09:23 [restartedMain] INFO  o.apache.juli.logging.DirectJDKLog - Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-02-24 11:09:23 [restartedMain] INFO  o.s.boot.StartupInfoLogger - Started DemoApplication in 0.075 seconds (process running for 1356.925)
+2026-02-24 11:09:54 [restartedMain] INFO  o.s.boot.StartupInfoLogger - Starting DemoApplication using Java 21.0.9 with PID 74452 (/Users/hansoojeong/Documents/hana8/java/demo/build/classes/java/main started by hansoojeong in /Users/hansoojeong/Documents/hana8/java/demo)
+2026-02-24 11:09:54 [restartedMain] DEBUG o.s.boot.StartupInfoLogger - Running with Spring Boot v4.0.3, Spring v7.0.5
+2026-02-24 11:09:54 [restartedMain] INFO  o.s.boot.SpringApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-24 11:09:54 [restartedMain] INFO  o.apache.juli.logging.DirectJDKLog - Starting service [Tomcat]
+2026-02-24 11:09:54 [restartedMain] INFO  o.apache.juli.logging.DirectJDKLog - Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-02-24 11:09:54 [restartedMain] INFO  o.s.boot.StartupInfoLogger - Started DemoApplication in 0.074 seconds (process running for 1388.709)
