@@ -38,3 +38,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Log Files ###
+*.log
+logs/
+**/logs/
