@@ -16,9 +16,11 @@ import com.hana8.demo.service.UserService;
 
 import lombok.RequiredArgsConstructor;
 
+// 그냥 @Controller는 return 되는 것이 JSP, Thymeleaf 같은 view file임
+// REST 방식 -> @RestController
 @RestController
 @RequestMapping("/users")
-@RequiredArgsConstructor
+@RequiredArgsConstructor // 자동으로 Service를 받는 생성자를 만듦
 public class UserController {
 	private final UserService service;
 
