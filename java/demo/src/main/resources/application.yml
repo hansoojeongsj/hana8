@@ -7,3 +7,6 @@ spring:
     restart:
       enabled: true
       additional-paths: src/main/java
+
+# db:
+#   name: root
