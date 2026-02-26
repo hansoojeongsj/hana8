@@ -43,3 +43,5 @@ out/
 *.log
 logs/
 **/logs/
+
+db.properties
