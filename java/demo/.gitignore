@@ -5,6 +5,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+db.properties
 *security.properties
 *security.yml
 
@@ -43,5 +44,3 @@ out/
 *.log
 logs/
 **/logs/
-
-db.properties
