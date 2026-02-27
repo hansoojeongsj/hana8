@@ -1,6 +1,5 @@
 @baseUrl=http://localhost:8080
 
-
 ### user list
 GET {{baseUrl}}/users
 
@@ -9,10 +8,10 @@ POST {{baseUrl}}/users
 Content-Type: application/json
 
 {
-  "id": 0,
-  "username": "Hong",
+  "username": "xxx",
   "email": "hong@mail.com",
-  "tel": "010-1234-5678"
+  "comail": "hong@hanabank.co",
+  "tel": "010-12-5678"
 }
 
 ### user-regist
@@ -20,7 +19,6 @@ POST {{baseUrl}}/users
 Content-Type: application/json
 
 {
-  "id": 0,
   "username": "Kim",
   "email": "kim@mail.com",
   "tel": "010-1234-5678"
