@@ -20,10 +20,12 @@ public class UserService {
 	}
 
 	public Integer registerUser(User user) {
+		user.replaceSpaceAndHyphen();
 		return repository.createUser(user);
 	}
 
 	public User editUser(User user) {
+		user.replaceSpaceAndHyphen();
 		return repository.updateUser(user);
 	}
 
