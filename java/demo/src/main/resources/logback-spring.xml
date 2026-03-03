@@ -37,10 +37,13 @@
     <logger name="com.hana8.demo" level="DEBUG">
         <appender-ref ref="FILE2"/>
     </logger>
-    
+
     <logger name="com.hana8.demo.DemoApplication" level="INFO">
         <appender-ref ref="FILE2"/>
     </logger>
+     
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
+    <logger name="org.hibernate.type" level="TRACE"/>
 
     <root level="WARN">
         <appender-ref ref="FILE"/>
