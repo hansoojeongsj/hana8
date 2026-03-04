@@ -13,7 +13,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity                        // 이게 있어야 DB 테이블로 인식
 @Table(uniqueConstraints = {
 	@UniqueConstraint(
@@ -21,6 +28,11 @@ import jakarta.persistence.UniqueConstraint;
 		columnNames = {"email"}
 	)
 })
+@Data
+@ToString(callSuper = true)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Member extends BaseEntity { // BaseEntity를 상속받아 생성/수정시간 관리
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +43,7 @@ public class Member extends BaseEntity { // BaseEntity를 상속받아 생성/�
 	@Column(nullable = false, length = 30) // varchar(30)
 	private String nickname;
 
-	@Column(nullable = false, length = 255) // unique는 위에서
+	@Column(nullable = false) // unique는 위에서, length = 255->디폴트
 	private String email;
 
 	private String passwd; // password는 예약어임 -> passwd

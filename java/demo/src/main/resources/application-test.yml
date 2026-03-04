@@ -14,8 +14,8 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 
-    show-sql: true
-    defer-datasource-initialization: true
+    #    show-sql: true
+    defer-datasource-initialization: false
 
     properties:
       hibernate:
@@ -24,12 +24,12 @@ spring:
           time_zone: Asia/Seoul
         order_inserts: true
         order_updates: true
-        format_sql: true
+        format_sql: false
         use_sql_comments: true
 
   sql:
     init:
-      mode: always
+      mode: never
 
   flyway:
     enabled: false

@@ -1,6 +1,7 @@
 SET FOREIGN_KEY_CHECKS = 0;
 truncate table User;
 truncate table Member; -- Member 테이블도 비우기 추가
+truncate table Post;
 SET FOREIGN_KEY_CHECKS = 1;
 
 SET time_zone = 'Asia/Seoul';
@@ -15,5 +16,5 @@ values ('kim', 'kim@gmail.com', '01012345679', 'B', 12000.00);
 -- 신규 Member 데이터
 insert into Member(nickname, email, passwd, bloodType, isActive)
 values ('lee', 'lee@naver.com', null, 'AB', true),
-        ('park', 'park@gmail.com', null, 'O', false),
+       ('park', 'park@gmail.com', null, 'O', false),
        ('moon', 'moon@gmail.com', null, 'O', false);

@@ -26,17 +26,17 @@ public class SpringConfig {
 	}
 
 	@Bean
-	public PostsRepository postRepository() {
+	public PostsRepository postsRepository() {
 		return new PostRepositoryImpl();
 	}
 
 	@Bean
-	public PostsRepository postRepositoryList() {
+	public PostsRepository postsRepositoryList() {
 		return new PostRepositoryListImpl();
 	}
 
 	@Bean
-	public PostsService postService() {
-		return new PostServiceImpl(postRepository(), postRepositoryList());
+	public PostsService postsService() {
+		return new PostServiceImpl(postsRepository(), postsRepositoryList());
 	}
 }
