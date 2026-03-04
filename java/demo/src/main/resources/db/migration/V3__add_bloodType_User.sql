@@ -3,7 +3,7 @@ alter table User
 
 create table Member
 (
-    id        int unsigned                                                    not null auto_increment,
+    id        int unsigned  auto_increment                                    not null,
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP                             not null,
     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP not null,
     nickname  varchar(30)                                                     not null,
@@ -17,10 +17,14 @@ create table Member
 alter table Member
     add constraint uniq_User_email unique (email);
 
+
 create table Post
 (
-    id        varchar(20)                         not null primary key,
-    createdAt timestamp default CURRENT_TIMESTAMP not null,
-    updatedAt timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP,
-    title     varchar(255)                        null
+    id        int unsigned auto_increment                                     not null,
+    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP                             not null,
+    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP not null,
+    title     varchar(255)                                                    not null,
+    writer    varchar(31)                                                     not null,
+    body      varchar(2000),
+    primary key (id)
 );
