@@ -17,7 +17,7 @@ public class MemberService {
 	private final MemberRepository repository;
 	private final MyMemberMapper mapper;
 
-	public List<MemberDTO> getMemers() {
+	public List<MemberDTO> getMembers() {
 		List<Member> members = repository.findAll();
 
 		return members.stream().map(mapper::toDTO).toList();
@@ -28,5 +28,30 @@ public class MemberService {
 			.orElseThrow(() -> new IllegalArgumentException("Member #%d is not found!".formatted(id)));
 
 		return mapper.toDTO(member);
+	}
+
+	public MemberDTO registMember(MemberDTO member) {
+		return mapper.toDTO(repository.save(mapper.toEntity(member)));
+	}
+
+	public MemberDTO editMember(MemberDTO member) {
+		Member oldMember = repository.findById(member.getId())
+			.orElseThrow(() -> new IllegalArgumentException("Member #%d is not found!".formatted(member.getId())));
+
+		oldMember.setEmail(member.getEmail());
+		oldMember.setNickname(member.getNickname());
+		oldMember.setIsActive(member.getIsActive());
+		oldMember.setBloodType(member.getBloodType());
+		oldMember.setPasswd(member.getPasswd());
+
+		return mapper.toDTO(repository.save(oldMember));
+	}
+
+	public int withdrawMember(Long id) {
+		Member oldMember = repository.findById(id)
+			.orElseThrow(() -> new IllegalArgumentException("Member #%d is not found!".formatted(id)));
+
+		repository.deleteById(id);
+		return 1;
 	}
 }

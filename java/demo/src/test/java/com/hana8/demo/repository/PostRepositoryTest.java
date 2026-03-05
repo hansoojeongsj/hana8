@@ -31,7 +31,7 @@ class PostRepositoryTest extends BaseRepositoryTest {
 			orgCnt = repository.count();
 	}
 
-	// @Test
+	@Test
 	void createAllTest() {
 		long cnt = repository.count();
 		List<Post> posts = LongStream.rangeClosed(4, 100)
