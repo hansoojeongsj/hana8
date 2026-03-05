@@ -14,10 +14,10 @@ insert into User(username, email, telno, bloodType, salhour)
 values ('kim', 'kim@gmail.com', '01012345679', 'B', 12000.00);
 
 -- 신규 Member 데이터
-insert into Member(nickname, email, passwd, bloodType, isActive)
-values ('lee', 'lee@naver.com', null, 'AB', true),
-       ('park', 'park@gmail.com', null, 'O', false),
-       ('moon', 'moon@gmail.com', null, 'O', false);
+insert into Member (nickname, email, passwd, isActive, bloodType)
+values ('hong', 'hong@gmail.com', null, 1, 'A'),
+       ('kim', 'kim@gmail.com', null, 0, 'B'),
+       ('lee', 'lee@gmail.com', null, 1, 'AB');
 
 insert into Post(title, writer, body)
 values ('Title1', 'hong', 'body of Title1'),

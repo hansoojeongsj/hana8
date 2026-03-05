@@ -3,6 +3,23 @@
 ### member list
 GET {{baseUrl}}/
 
+### search
+GET {{baseUrl}}/search?isActive=true
+
+### search
+GET {{baseUrl}}/search?isActive=0
+
+### search
+GET {{baseUrl}}/search?isActive=1&bloodType=B
+
+### search
+# 에러남
+GET {{baseUrl}}/search?nickname=hong
+
+### search
+# 에러남
+GET {{baseUrl}}/search?datetime=2026-03-05 16:01:26
+
 ### member-regist
 POST {{baseUrl}}
 Content-Type: application/json
