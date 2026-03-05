@@ -1,4 +1,4 @@
-package com.hana8.demo.common;
+package com.hana8.demo.common.validator;
 
 import java.util.regex.Pattern;
 
@@ -23,7 +23,7 @@ public class TelnoValidator implements ConstraintValidator<Telno, String> {
 	public boolean isValid(String value, ConstraintValidatorContext ctx) {
 		if (value == null || value.isBlank())
 			return true;
-		
+
 		// 010-123 41234 => 01012341234
 		String replaceSpaceAndHyphen = value.replaceAll("[\\s-]", "");
 		return pattern.matcher(replaceSpaceAndHyphen).matches();

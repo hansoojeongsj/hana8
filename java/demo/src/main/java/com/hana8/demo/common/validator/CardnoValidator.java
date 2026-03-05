@@ -1,4 +1,4 @@
-package com.hana8.demo.common;
+package com.hana8.demo.common.validator;
 
 import java.util.regex.Pattern;
 

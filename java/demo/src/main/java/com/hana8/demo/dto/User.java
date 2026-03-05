@@ -2,10 +2,10 @@ package com.hana8.demo.dto;
 
 import java.time.LocalDate;
 
-import com.hana8.demo.common.Cardno;
-import com.hana8.demo.common.Telno;
 import com.hana8.demo.common.serializer.CardnoSerializer;
 import com.hana8.demo.common.serializer.TelnoSerializer;
+import com.hana8.demo.common.validator.Cardno;
+import com.hana8.demo.common.validator.Telno;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
