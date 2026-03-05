@@ -18,3 +18,8 @@ insert into Member(nickname, email, passwd, bloodType, isActive)
 values ('lee', 'lee@naver.com', null, 'AB', true),
        ('park', 'park@gmail.com', null, 'O', false),
        ('moon', 'moon@gmail.com', null, 'O', false);
+
+insert into Post(title, writer, body)
+values ('Title1', 'hong', 'body of Title1'),
+       ('Title2', 'kim', 'body of Title2'),
+       ('Title3', 'lee', 'body of Title3');
