@@ -10,15 +10,22 @@ GET {{baseUrl}}/search?isActive=true
 GET {{baseUrl}}/search?isActive=0
 
 ### search
+# []
 GET {{baseUrl}}/search?isActive=1&bloodType=B
 
 ### search
-# 에러남
 GET {{baseUrl}}/search?nickname=hong
 
 ### search
-# 에러남
+# "datetime": "유효하지 않은 날짜 형식(yyyy-MM-dd HH:mm)입니다."
 GET {{baseUrl}}/search?datetime=2026-03-05 16:01:26
+
+### search
+# "datetime": "유효하지 않은 날짜 형식(yyyy-MM-dd HH:mm)입니다."
+GET {{baseUrl}}/search?datetime=2026-03-05
+
+### search
+GET {{baseUrl}}/search?datetime=2026-03-05 09:16
 
 ### member-regist
 POST {{baseUrl}}
@@ -33,11 +40,12 @@ Content-Type: application/json
 }
 
 ### member-info
+# Warn: Member #5 is not found!
 GET {{baseUrl}}/5
 
 
 ### post-update
-PUT {{baseUrl}}/5
+PUT {{baseUrl}}/4
 Content-Type: application/json
 
 {
