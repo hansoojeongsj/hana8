@@ -20,8 +20,8 @@ public class PostDTO {
 	@NotBlank
 	private String title;
 
-	private String body;
-
+	private PostBodyDTO body;
+	
 	@NotBlank
 	private String writer;
 
