@@ -49,4 +49,9 @@ public class PostController {
 	int removePost(@PathVariable Long id) {
 		return service.removePost(id);
 	}
+
+	@GetMapping("/{id}/replies")
+	PostDTO getReplies(@PathVariable Long id) {
+		return service.getReplies(id);
+	}
 }
