@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @EqualsAndHashCode(callSuper = true)
-@Entity                        // 이게 있어야 DB 테이블로 인식
+@Entity
 @Table(uniqueConstraints = {
 	@UniqueConstraint(
 		name = "uniq_User_email",
@@ -33,25 +33,24 @@ import lombok.ToString;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Member extends BaseEntity { // BaseEntity를 상속받아 생성/수정시간 관리
+public class Member extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(updatable = false, columnDefinition = "int unsigned") // unsigned int
+	@Column(columnDefinition = "int unsigned")
 	private Long id;
 
-	// @Column(columnDefinition = "varchar(30) not null") 도 가능
-	@Column(nullable = false, length = 30) // varchar(30)
+	// @Column(columnDefinition = "varchar(30) not null")
+	@Column(nullable = false, length = 30)
 	private String nickname;
 
-	@Column(nullable = false) // unique는 위에서, length = 255->디폴트
+	@Column(nullable = false)
 	private String email;
 
-	private String passwd; // password는 예약어임 -> passwd
+	private String passwd;
 
-	@Enumerated(EnumType.STRING) // bloodType enum
-	// @Column(nullable = false) // index로 잡을거면 nullable = false !!
+	@Enumerated(EnumType.STRING)
 	private BloodType bloodType;
 
-	@ColumnDefault("false") // boolean default false // 안줘도 default가 false이긴 함
+	@ColumnDefault("false")
 	private Boolean isActive;
 }

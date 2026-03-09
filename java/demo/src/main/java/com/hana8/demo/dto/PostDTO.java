@@ -27,8 +27,8 @@ public class PostDTO {
 	private String title;
 
 	@NotBlank
-	private String writer;
-
+	private MemberDTO writer;
+	
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 

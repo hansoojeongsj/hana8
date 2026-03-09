@@ -15,6 +15,8 @@ import jakarta.transaction.Transactional;
 public interface PostRepository extends JpaRepository<Post, Long>, QuerydslPredicateExecutor<Post> {
 	List<Post> findByTitleStartingWith(String title);
 
+	List<Post> findByWriterId(Long writerId);
+	
 	List<Post> findByIdBetween(long l, long l1);
 
 	@Query("select p from Post p where p.id between :start and :end order by p.id desc")

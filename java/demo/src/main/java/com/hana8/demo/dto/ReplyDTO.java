@@ -13,8 +13,8 @@ public class ReplyDTO {
 	private Long id;
 
 	private String reply;
-	private String replier;
-
+	private MemberDTO replier;
+	
 	private Long postId;
 
 	// @JsonBackReference
