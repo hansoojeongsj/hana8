@@ -31,11 +31,18 @@ Content-Type: application/json
   "body": {
     "body": "body 1"
   },
-  "writer": "1"
+  "writer": {
+    "id": 1
+  },
+  "hashtags": [
+    {
+      "tag": "monday"
+    }
+  ]
 }
 
 ### post-info
-GET {{baseUrl}}/104
+GET {{baseUrl}}/4
 
 
 ### post-update

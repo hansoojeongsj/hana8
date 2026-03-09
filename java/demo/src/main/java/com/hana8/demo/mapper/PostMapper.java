@@ -12,6 +12,7 @@ import com.hana8.demo.entity.PostBody;
 public interface PostMapper {
 	// @Mapping(source = "nickname", target = "username")
 	// @Mapping(target = "passwd", ignore = true)
+	// @Mapping(target = "hashtags", ignore = true)
 	@Mapping(target = "replies", ignore = true)
 	PostDTO toDTO(Post post);
 
