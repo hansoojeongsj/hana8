@@ -62,11 +62,11 @@ public class Member extends BaseEntity {
 	// 내가 캡틴으로 있는 부서
 	@OneToMany(mappedBy = "captain")
 	@Builder.Default
+	@ToString.Exclude
 	private List<Dept> captainDepts = new ArrayList<>();
-
+	
 	// 내가 소속된 부서
 	@ManyToMany(mappedBy = "deptMembers")
 	@Builder.Default
 	private List<Dept> depts = new ArrayList<>();
-
 }
