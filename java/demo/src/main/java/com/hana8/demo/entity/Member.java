@@ -64,9 +64,13 @@ public class Member extends BaseEntity {
 	@Builder.Default
 	@ToString.Exclude
 	private List<Dept> captainDepts = new ArrayList<>();
-	
+
 	// 내가 소속된 부서
 	@ManyToMany(mappedBy = "deptMembers")
 	@Builder.Default
 	private List<Dept> depts = new ArrayList<>();
+	
+	public Member(Long id) {
+		this.id = id;
+	}
 }
