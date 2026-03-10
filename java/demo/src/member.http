@@ -41,7 +41,7 @@ Content-Type: application/json
 
 ### member-info
 # Warn: Member #5 is not found!
-GET {{baseUrl}}/1
+GET {{baseUrl}}/2
 
 ### post-update
 PUT {{baseUrl}}/4
