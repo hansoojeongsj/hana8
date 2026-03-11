@@ -93,3 +93,6 @@ GET {{baseUrl}}/files/download/1793435a-8e62-4281-92fe-e111bd1803fc.jpg
 
 ### 파일 다운로드 (secure)
 GET {{baseUrl}}/files/download/thumb_1793435a-8e62-4281-92fe-e111bd1803fc.jpg?isSecure=true
+
+### 파일 삭제
+DELETE {{baseUrl}}/files/delete/1793435a-8e62-4281-92fe-e111bd1803fc.jpg
