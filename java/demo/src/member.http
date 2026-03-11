@@ -60,7 +60,8 @@ Content-Type: application/json
 DELETE {{baseUrl}}/5
 
 ### 파일 업로드 http
-POST {{baseUrl}}/files/upload
+#POST {{baseUrl}}/files/upload
+POST {{baseUrl}}/files/secure/upload
 Content-Type: multipart/form-data; boundary=boundary
 
 --boundary
@@ -69,6 +70,7 @@ Content-Type: image/jpeg
 
 < /Users/hansoojeong/Downloads/test1.jpeg
 --boundary–
+
 
 ### 다중 파일 업로드
 POST {{baseUrl}}/files/upload/multiple
@@ -87,4 +89,7 @@ Content-Type: image/jpeg
 --boundary--
 
 ### 파일 다운로드
-GET {{baseUrl}}/files/download/test1.jpg
+GET {{baseUrl}}/files/download/1793435a-8e62-4281-92fe-e111bd1803fc.jpg
+
+### 파일 다운로드 (secure)
+GET {{baseUrl}}/files/download/thumb_1793435a-8e62-4281-92fe-e111bd1803fc.jpg?isSecure=true
