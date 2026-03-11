@@ -39,6 +39,14 @@ spring:
   web:
     resources:
       add-mappings: false
+      
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger.html
+  api-docs:
+    enabled: true
+    path: /hana8/api-docs
 
 #  devtools:
 #    livereload:
