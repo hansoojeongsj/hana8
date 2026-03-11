@@ -58,3 +58,33 @@ Content-Type: application/json
 
 ### withdraw member
 DELETE {{baseUrl}}/5
+
+### 파일 업로드 http
+POST {{baseUrl}}/files/upload
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="test.jpeg"
+Content-Type: image/jpeg
+
+< /Users/hansoojeong/Downloads/test1.jpeg
+--boundary–
+
+### 다중 파일 업로드
+POST {{baseUrl}}/files/upload/multiple
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="files"; filename="test1.jpg"
+Content-Type: image/jpeg
+
+< /Users/hansoojeong/Downloads/test3.jpg
+--boundary
+Content-Disposition: form-data; name="files"; filename="test2.jpg"
+Content-Type: image/jpeg
+
+< /Users/hansoojeong/Downloads/test2.png
+--boundary--
+
+### 파일 다운로드
+GET {{baseUrl}}/files/download/test1.jpg
