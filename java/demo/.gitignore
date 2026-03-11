@@ -9,6 +9,11 @@ db.properties
 *security.properties
 *security.yml
 
+ttt
+tmp
+upload
+secure
+
 ### STS ###
 .apt_generated
 .classpath

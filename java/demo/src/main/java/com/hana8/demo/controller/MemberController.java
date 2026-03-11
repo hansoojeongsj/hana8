@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.hana8.demo.dto.MemberDTO;
 import com.hana8.demo.dto.MemberSearchDTO;
+import com.hana8.demo.dto.UploadDTO;
 import com.hana8.demo.service.FileService;
 import com.hana8.demo.service.MemberService;
 
@@ -35,6 +36,13 @@ public class MemberController {
 	ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
 		// 비즈니스로직은 서비스로 ! 컨트롤러는 주저리주저리 안돼
 		return ResponseEntity.ok(fileService.upload(file));
+	}
+
+	@PostMapping(value = "files/upload/multiple", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+		// 폼 요소 여러개, 이미지 파일 여러개 받기
+	ResponseEntity<List<String>> uploadMultiple(@Valid UploadDTO dto) {
+		List<String> list = dto.getFiles().stream().map(fileService::upload).toList();
+		return ResponseEntity.ok(list);
 	}
 
 	@GetMapping("")
