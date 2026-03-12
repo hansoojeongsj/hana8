@@ -133,4 +133,4 @@ DELETE {{baseUrl}}/2/images/3
 GET {{baseUrl}}/4
 
 ### with-draw
-DELETE {{baseUrl}}/4
+DELETE {{baseUrl}}/2
