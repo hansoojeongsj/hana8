@@ -17,4 +17,4 @@ public interface MemberImageRepository extends JpaRepository<MemberImage, Long> 
 	int deleteByImageId(Long id);
 
 	List<MemberImage> findByMemberId(Long id);
-}// 평가 과제 할 땐, repository test 다 작성해야 함
+} // 평가 과제 할 땐, repository test 다 작성해야 함

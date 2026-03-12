@@ -66,8 +66,8 @@ public class MemberController {
 		return service.withdrawMember(id);
 	}
 
-	@PostMapping(value = "files/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
+	@PostMapping(value = "/files/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	ResponseEntity<String> uploadFile(@RequestParam MultipartFile file) {
 		// 비즈니스로직은 서비스로 ! 컨트롤러는 주저리주저리 안돼
 		return ResponseEntity.ok(fileService.upload(file));
 	}
@@ -77,7 +77,7 @@ public class MemberController {
 		return ResponseEntity.ok(fileService.upload(file, true));
 	}
 
-	@PostMapping(value = "files/upload/multiple", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@PostMapping(value = "/files/upload/multiple", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 		// 폼 요소 여러개, 이미지 파일 여러개 받기
 	ResponseEntity<List<String>> uploadMultiple(@Valid UploadDTO dto) {
 		List<String> list = dto.getFiles().stream().map(fileService::upload).toList();
@@ -96,7 +96,7 @@ public class MemberController {
 
 	@DeleteMapping("/files/delete/{filename}")
 	ResponseEntity<Void> deleteFile(@PathVariable String filename) {
-		// Todo Check the authentication
+		// Todo check the authentication
 
 		fileService.delete(filename);
 		return ResponseEntity.ok().build();

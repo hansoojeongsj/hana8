@@ -21,6 +21,7 @@ public interface MemberMapper {
 	@Mapping(target = "memberImages", ignore = true)
 	MemberDTO toDTO(Member member);
 
+	// @Mapping(target = "memberImages", ignore = true)
 	Member toEntity(MemberDTO dto);
 
 	List<MemberDTO> toDTOList(List<Member> members);

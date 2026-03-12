@@ -48,8 +48,8 @@ public class ControllerExceptionHandler {
 	}
 
 	@ExceptionHandler(NoHandlerFoundException.class)
-	public ResponseEntity<String> handleNoHandlerFoundExceptionHandler(NoHandlerFoundException e) {
-		return ResponseEntity.status(404).body("Not Found: " + e.getRequestURL());
+	public ResponseEntity<String> handleNotFoundException(NoHandlerFoundException e) {
+		return ResponseEntity.status(404).body(e.getMessage());
 	}
 
 	@ExceptionHandler(Exception.class)
