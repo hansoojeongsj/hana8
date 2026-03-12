@@ -73,8 +73,8 @@ public class Member extends BaseEntity {
 	@OneToMany(mappedBy = "member")
 	@Builder.Default
 	@ToString.Exclude
-	private List<MemberImage> images = new ArrayList<>();
-
+	private List<MemberImage> memberImages = new ArrayList<>();
+	
 	public Member(Long id) {
 		this.id = id;
 	}

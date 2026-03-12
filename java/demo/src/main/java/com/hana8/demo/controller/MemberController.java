@@ -102,7 +102,7 @@ public class MemberController {
 		return ResponseEntity.ok().build();
 	}
 
-	@PostMapping(path = "/{memberID}/images", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@PostMapping(path = "/{memberId}/images", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	ResponseEntity<?> registImages(@PathVariable Long memberId,
 		@Valid() @ModelAttribute MemberImageRequestDTO requestDTO) {
 		requestDTO.setMemberId(memberId);
