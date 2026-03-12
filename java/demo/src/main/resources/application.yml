@@ -53,6 +53,22 @@ upload:
   path: src/main/resources/static/upload
   secure: src/main/upload/secure # 나중에 쓸거니까
 
+management:
+  server:
+    port: 9001
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: env,beans
+  endpoint:
+    metrics:
+      access: read_only
+    shutdown:
+      access: unrestricted
+    health:
+      show-details: always
+
 springdoc:
   swagger-ui:
     enabled: true
