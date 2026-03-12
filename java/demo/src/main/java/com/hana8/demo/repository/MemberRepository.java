@@ -7,3 +7,4 @@ import com.hana8.demo.entity.Member;
 
 public interface MemberRepository extends JpaRepository<Member, Long>, QuerydslPredicateExecutor<Member> {
 }
+// 평가 과제 할 땐, repository test 다 작성해야 함

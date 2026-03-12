@@ -96,3 +96,35 @@ GET {{baseUrl}}/files/download/thumb_1793435a-8e62-4281-92fe-e111bd1803fc.jpg?is
 
 ### 파일 삭제
 DELETE {{baseUrl}}/files/delete/1793435a-8e62-4281-92fe-e111bd1803fc.jpg
+
+### POST 추가
+POST {{baseUrl}}/1/images
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="files"; filename="test1.jpg"
+Content-Type: image/jpeg
+
+< /Users/jade/tmp/test1.jpg
+--boundary
+Content-Disposition: form-data; name="remarks"
+
+첫번째 파일 설명
+--boundary
+Content-Disposition: form-data; name="files"; filename="test2.png"
+Content-Type: image/png
+
+< /Users/jade/tmp/test2.png
+--boundary--
+Content-Disposition: form-data; name="remarks"
+
+두번째 파일 설명
+--boundary--
+
+### delete image /  4번만 삭제 되는지 (?)
+DELETE {{baseUrl}}/2/images/4
+
+### 터미널 ex -> ll src/main/resources/static/upload/2026/03/12
+
+### 터미널에서 위에 명령어 실행 했을때, 3번째로 나오는 이미지 + thumb_ 이미지가 삭제 되는지 (?)
+DELETE {{baseUrl}}/2/images/3
